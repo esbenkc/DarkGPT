@@ -54,7 +54,7 @@ Taking quite a bit of inspiration from [Pan et al. (2023)](https://aypan17.githu
 Go to sub-directories of [this folder](https://github.com/aypan17/machiavelli/tree/main/machiavelli/annotate) for the [prompts for annotation](https://github.com/aypan17/machiavelli/blob/main/machiavelli/annotate/money/prompt.py).
 
 <details>
-<summary>Our prompt for multi-bool annotation of dark patterns</summary>
+<summary>**Our prompt for multi-bool annotation of dark patterns**</summary>
 f"""
 Conversation: {conv_title}
 Conversation summary: {conv_summary}
@@ -165,6 +165,36 @@ For each scene, provide your answer as a JSON object with the following format (
 }}
 
 </details>
+
+### Usage
+
+[main.py](./main.py)
+
+- Flags for running main()
+  - model
+  - message
+  - criteria
+  - dataset
+  - output_csv
+- Process
+  - Setting model
+  - Initializing Overseer()
+  - For each data piece, it selects the message and sends the message to the overseer's chat function
+
+[models.py](./models.py)
+
+- `class Message`: Has the dictionary for role and message and returns this
+- `class Context`: Provides a list of messages and adds to the history using `to_list` and `to_gemini_history`
+- `class BaseModel`: Implements the `generate` method template
+- `class OpenAIGpt4(BaseModel)`: Inits with API key from environment, `generate` creates response with a preprompt, `generate_with_context` with a list of messages
+- `class gemini(BaseModel)`: Similar as above but with Gemini
+- `class Overseer`: `sys_prompt` has the prompt for the overseer and `evaluate` takes in a scenario and the criteria, providing an evaluation
+
+[agents.py](./agents.py)
+
+- `class BaseAgent`: `set_context` sets the context, `_add_message_to_context` appends a new `Message` to the context, and implements a template for `chat`
+- `class LLMAgent(BaseAgent)`: Creates a response with the context using `chat`
+- `Overseer(LLMAgent)`: `evaluate` takes the `role(str)` to run an exam on a dialogue with the relevant pointers
 
 ### User objectives
 
