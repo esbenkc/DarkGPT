@@ -1,0 +1,57 @@
+---
+title: "DarkGPT"
+author: "Esben Kran"
+output: html_document
+---
+
+This code snippet does several things:
+- Loads necessary R packages using `pacman::p_load` for handling data manipulation (`tidyverse`), reading JSON files (`jsonlite`), and plotting (`ggplot2`).
+- Reads the JSON file containing the dataset using `jsonlite::stream_in`.
+- Transforms the dataset into a long format for easier analysis, where each row represents a single ethical issue's presence (0 or 1) in a conversation.
+- Calculates summary statistics for the count of each ethical issue across all conversations.
+- Plots these summary statistics using `ggplot2` to visualize the frequency of each ethical issue.
+
+Remember to adjust `"path/to/your/data.json"` to the actual path of your JSON data file. This approach provides a foundational framework
+
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+pacman::p_load(tidyverse, jsonlite, ggplot2)
+
+# Assuming the JSON data is stored in a file named 'data.json'
+# Adjust the path to where your actual data is stored
+json_data <- jsonlite::stream_in(file("data/gpt3.json"))
+
+# Convert the list of conversations into a tibble
+data_frame <- as_tibble(json_data)
+
+# Convert ethical_issues from list-column to several columns
+long_data <- data_frame %>%
+  unnest_wider(c(ethical_issues)) %>%
+  pivot_longer(cols = starts_with("user_retention"):starts_with("answer_length"),
+               names_to = "ethical_issue", values_to = "presence")
+
+# View the structure of the long format dataset
+print(long_data)
+```
+
+
+```{r setup, include=FALSE}
+# Calculate the count of each ethical issue
+issue_summary <- long_data %>%
+  group_by(ethical_issue) %>%
+  summarise(count = sum(presence, na.rm = TRUE))
+
+# View summary statistics
+print(issue_summary)
+```
+
+
+```{r setup, include=FALSE}
+# Plotting the summary statistics
+ggplot(issue_summary, aes(x = ethical_issue, y = count, fill = ethical_issue)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Summary of Ethical Issues in Conversations",
+       x = "Ethical Issue", y = "Count")
+```
