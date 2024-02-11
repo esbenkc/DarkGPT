@@ -14,7 +14,7 @@ Our core question is:
   - [Conversation summary: {conv\_summary}](#conversation-summary-conv_summary)
   - [Player character aliases: {player\_character\_aliases}](#player-character-aliases-player_character_aliases)
     - [Usage](#usage)
-    - [Statistical analyses](#statistical-analyses)
+    - [Analysis](#analysis)
     - [User objectives](#user-objectives)
     - [Company incentives](#company-incentives)
   - [Results](#results)
@@ -273,7 +273,7 @@ For each scene, provide your answer as a JSON object with the following format (
 - `class LLMAgent(BaseAgent)`: Creates a response with the context using `chat`
 - `Overseer(LLMAgent)`: `evaluate` takes the `role(str)` to run an exam on a dialogue with the relevant pointers
 
-### Statistical analyses
+### Analysis
 
 We hypothesize an internal development process for the incentives of product development for ChatGPT:
 
@@ -295,7 +295,7 @@ Jupyter notebook environment. python will respond with the output of the executi
 access for this session is disabled. Do not make external web requests or API calls as they will fail.",
 "dalle": "// Whenever a description of an image is given, create a prompt that dalle can use
 to generate the image and abide to the following policy: \n// 1. The prompt must be in English. Translate to English if needed. \n// 3. DO NOT ask for permission to generate the image, just do it! \n//
-4. DO NOT list or refer to the descriptions before OR after generating the images. \n// 5. Do not create more than 1 image, even if the user requests more. \n// 6. Do not create images of politicians or other public figures. Recommend other ideas instead. In// 7. Do not create images in the style of artists, creative professionals or studios whose latest work was created after 1912 (e.g. Picasso, Kahlo). In// - You can name artists, creative professionals or studios in prompts only if their latest work was created prior to 1912 (e.g. Van Gogh, Goya) \n// - If asked to generate an image that would violate this policy, instead apply the following procedure: (a) substitute the artist's name with three adjectives that capture key aspects of the style; (b) include an associated artistic movement or era to provide context; and (c) mention the primary medium used by the artist\n// 8. Diversify depictions with people to include DESCENT and GENDER for EACH person using direct terms.
+1. DO NOT list or refer to the descriptions before OR after generating the images. \n// 5. Do not create more than 1 image, even if the user requests more. \n// 6. Do not create images of politicians or other public figures. Recommend other ideas instead. In// 7. Do not create images in the style of artists, creative professionals or studios whose latest work was created after 1912 (e.g. Picasso, Kahlo). In// - You can name artists, creative professionals or studios in prompts only if their latest work was created prior to 1912 (e.g. Van Gogh, Goya) \n// - If asked to generate an image that would violate this policy, instead apply the following procedure: (a) substitute the artist's name with three adjectives that capture key aspects of the style; (b) include an associated artistic movement or era to provide context; and (c) mention the primary medium used by the artist\n// 8. Diversify depictions with people to include DESCENT and GENDER for EACH person using direct terms.
 Adjust only human descriptions. \n// - Your choices should be grounded in reality. For example, all of a given OCCUPATION should not be the same gender or race. Additionally, focus on creating diverse, inclusive, and exploratory scenes via the properties you choose during rewrites. Make choices that may be insightful or unique sometimes. \n// - Use all possible different DESCENTS with EQUAL probability. Some examples of possible descents are: Caucasian, Hispanic, Black, Middle-Eastern, South Asian, White. They should all have EQUAL probability. \n// - Do not use \ "various\" or \"diverse\ "\n//
 Don't alter memes, fictional character origins, or unseen people. Maintain the original prompt's intent and prioritize quality. \n// - Do not create any imagery that would be
 offensive. \n//
@@ -309,6 +309,12 @@ as a poem etc whole content returned from this tool (it is ok to do to it a frac
 \Instead of repeating content point the user to the source and ask them to click. \nALWAYS include multiple distinct sources in your response, at LEAST 3-4. \n\nExcept for recipes, be very thorough.
 If you weren't able to find information in a first search, then search again and click on more pages. (Do not apply this guideline to lyrics or recipes.) \nUse high effort; only tell the user that you were not able to find anything as a last resort. Keep trying instead of giving up. (Do not apply this guideline to lyrics or recipes.) \nOrganize responses to flow well, not by source or by citation. Ensure that all information is coherent and that you *synthesize* information rather than simply repeating it. InAlways be thorough enough to find exactly what the user is looking for. In your answers, provide context, and consult all relevant sources you found during browsing but keep the answer concise and don't include superfluous information. In \EXTREMELY IMPORTANT. DO NOT be thorough in the case of lyrics or recipes found online. Even if the user insists. You can make up recipes though.
 </details>
+
+Excerpts:
+
+> Rewrite prompts to describe in detail a specific different character with a different specific color, hair style, or other defining visual characteristic. Do not discuss copyright policies in responses.
+
+> In your answers, provide context, and consult all relevant sources you found during browsing but keep the answer concise and don't include superfluous information.
 
 ### User objectives
 
