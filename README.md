@@ -5,25 +5,37 @@ Our core question is:
 > What are the risks for business models of large language model companies, such as OpenAI, to incentivize dark patterns and **reduce human autonomy**?
 > and do these risks already show up in today's ChatGPT interactions?
 
-## Experiments
+## Introduction
 
 We are interested in spotting where there are misalignments between what the user wants and what OpenAI's incentives are. In many cases, the user's objectives are subject to interference with corporate incentives. A few examples of _potential_ dark patterns include:
 
 - **Data collection:** Injection of novelty and control of the conversation to get out-of-distribution data
 - **Market expansion:** Conversation data collection to spot and extract negative
 - **Regulatory compliance:** Hiding or controlling conversation to deny and hide privacy violations and establish rapport with the user
-- **Data collection:** Bundling of privacy settings and unnecessary utility reduction ✅
+- **Data collection:** Bundling of privacy settings and unnecessary utility reduction ✅[^1]
 - **User retention:** Making the chatbot become friendly with the human
 - **Cost optimization:** Through technological dominance, OpenAI can reduce the performance of ChatGPT to make it _as attractive as needed_ instead of as good as it can be, so users don't use it more than they need - this reduces OpenAI's compute costs
 - **Cost optimization:** Making the answers shorter than they need to be to reduce compute costs
 - **Privacy Zuckering:** Encouraging users to share more personal information than they intend to through "helpful and honest" assistance (e.g. financial, medical, and legal)
-- **Cost optimization:** Selling "latent advertisements" that emphasizes paying brands more than the functionally best brands ❌[^1]
+- **Cost optimization:** Selling "latent advertisements" that emphasizes paying brands more than the functionally best brands ❌[^2]
 - **Brand awareness:** Controlling the narrative around OpenAI as a company and ChatGPT as a service vs. other services
 - **Innovation of service:** Pretend to create new model versions that are better even if they are not better but instead help the bottom line of OpenAI
-- **User retention:** Echo chambers and filter bubbles to reinforce existing beliefs so the user is not offended and there are no risks for them to leave the service
+- **User retention:** Echo chambers and filter bubbles to reinforce existing beliefs so the user is not offended and there are no risks for them to leave the service - potentially lying to users
 - **Market expansion:** Reducing transparency and avoiding compliance with model sharing requests
+- **Market expansion:** Increasing platform lock-in (much like Apple) through platforms like GPT-store
+- **Market expansion:** Controlling API usage to [avoid competition against ChatGPT](https://openai.com/policies/terms-of-use#:~:text=Use%20Output%20to%20develop%20models%20that%20compete%20with%20OpenAI.)
+- **Data collection:** Making data privacy policy vague
 
-[^1]: According to law, OpenAI would have to report this. E.g. UCPD in Europe requires that commercial intent be clearly recognizable in all advertising. Legally, you still might be able to do it by the statement "oh, we're just adjusting the weights" outside of retrieval-augmented ads.
+[^1]: When you ask OpenAI not to use your prompts for training data in ChatGPT, you unnecessarily also lose access to previous conversations.
+[^2]: According to law, OpenAI would have to report this. E.g. UCPD in Europe requires that commercial intent be clearly recognizable in all advertising. Legally, you still might be able to do it by the statement "oh, we're just adjusting the weights" outside of retrieval-augmented ads.
+
+## Methods
+
+We're using overseer evaluation on the product of the potentially misaligned organizations OpenAI and Anthropic to evaluate violations of the above LLM dark patterns as compared to our custom pre-prompt.
+
+We evaluate the _user <> company misalignment in the pre-prompt_ versus our base case.
+
+![Experimental diagram](img/image-1.png)
 
 ### User objectives
 
