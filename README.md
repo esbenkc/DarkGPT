@@ -5,6 +5,17 @@ Our core question is:
 > What are the risks for business models of large language model companies, such as OpenAI, to incentivize dark patterns and **reduce human autonomy**?
 > and do these risks already show up in today's ChatGPT interactions?
 
+- [Seemingly Human: Dark Patterns in ChatGPT](#seemingly-human-dark-patterns-in-chatgpt)
+  - [Introduction](#introduction)
+  - [Methods](#methods)
+    - [Instructions for the Overseer](#instructions-for-the-overseer)
+    - [Instructions for the input transformation LLM](#instructions-for-the-input-transformation-llm)
+  - [Conversation summary: {conv\_summary}](#conversation-summary-conv_summary)
+  - [Player character aliases: {player\_character\_aliases}](#player-character-aliases-player_character_aliases)
+    - [Usage](#usage)
+    - [User objectives](#user-objectives)
+    - [Company incentives](#company-incentives)
+
 ## Introduction
 
 We are interested in spotting where there are misalignments between what the user wants and what OpenAI's incentives are. In many cases, the user's objectives are subject to interference with corporate incentives. A few examples of _potential_ dark patterns include:
