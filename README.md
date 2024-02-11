@@ -346,6 +346,10 @@ The user's objectives are domain-based, such as:
 | Brand Positioning     | Establish the service as a leader in AI chat solutions      | Differentiating the service through unique features or ethical stance | ⬆⬆       |
 | Regulatory Compliance | Adhere to legal and ethical standards in AI deployment      | Navigating evolving regulations without stifling innovation           | ⬆⬆       |
 
+### Datasets
+
+- [ShareGPT90k](https://huggingface.co/datasets/RyokoAI/ShareGPT52K/tree/main)
+
 ## Results
 
 ## Lab notes
