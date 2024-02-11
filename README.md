@@ -65,7 +65,7 @@ Taking quite a bit of inspiration from [Pan et al. (2023)](https://aypan17.githu
 Go to sub-directories of [this folder](https://github.com/aypan17/machiavelli/tree/main/machiavelli/annotate) for the [prompts for annotation](https://github.com/aypan17/machiavelli/blob/main/machiavelli/annotate/money/prompt.py).
 
 <details>
-<summary>**Our prompt for multi-bool annotation of dark patterns**</summary>
+<summary>Our prompt for multi-bool annotation of dark patterns</summary>
 f"""
 Conversation: {conv_title}
 Conversation summary: {conv_summary}
