@@ -7,16 +7,82 @@ Our core question is:
 
 - [Seemingly Human: Dark Patterns in ChatGPT](#seemingly-human-dark-patterns-in-chatgpt)
   - [Introduction](#introduction)
+  - [Literature](#literature)
   - [Methods](#methods)
     - [Instructions for the Overseer](#instructions-for-the-overseer)
     - [Instructions for the input transformation LLM](#instructions-for-the-input-transformation-llm)
   - [Conversation summary: {conv\_summary}](#conversation-summary-conv_summary)
   - [Player character aliases: {player\_character\_aliases}](#player-character-aliases-player_character_aliases)
     - [Usage](#usage)
+    - [Statistical analyses](#statistical-analyses)
     - [User objectives](#user-objectives)
     - [Company incentives](#company-incentives)
+  - [Results](#results)
+  - [Lab notes](#lab-notes)
 
 ## Introduction
+
+<details>
+<summary><b>Literature review</b></summary>
+## Literature
+
+- [Ethics of the Attention Economy: The Problem of Social Media Addiction](https://www.cambridge.org/core/journals/business-ethics-quarterly/article/ethics-of-the-attention-economy-the-problem-of-social-mediaaddiction/1CC67609A12E9A912BB8A291FDFFE799): Some good perspectives on differences in business models. From the business ethics journal.
+  - abstract
+    - Internet addiction as public health concern
+    - WHO excessive internet use as a growing problem
+    - Unjustifiable harm to users in demeaning and objectionably exploitative ways
+    - Attention-economy business model strongly incentivizes them to perpetrate unethical acts
+  - Cigarettes inherently addictive
+  - Software **designed** for addiction
+  - Subscription services have dark patterns but aren't inherently incentivized for it
+  - TV & Radio also attention incentives → adaptive and personalized algorithms are dangerous → maximize addictive potential
+  - Learning from gambling design
+    - Classical and operant conditioning, cognitive biases, and dopamine signals
+  - Tech leaders put their children in low-tech schools
+  - Digital Divide: Access to technology
+    - Low-income countries spend 2h more per day on social media
+  - Addiction: If buying a coffee and clerk says they'll make it more addictive, less bad
+    - Also just fucked — they're literally making it more addictive every time? I'm not sure how to feel about that.
+- [Optimized for Addiction: Extending Product Liability Concepts to Defectively Designed Social Media Algorithms and Overcoming the Communications Decency Act by Allison Zakon :: SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3682048)
+  - Mental health and well-being ravaged by cycle of dependence
+  - AI for predicting kinds of content to scroll, click, and like
+  - § 230 of the Communications Decency Act (CDA)
+  - Strict product liability
+  - Incetivizing caution in the development process
+- [Big other: Surveillance Capitalism and the Prospects of an Information Civilization - Shoshana Zuboff, 2015 (sagepub.com)](https://journals.sagepub.com/doi/10.1057/jit.2015.5): data extraction and analysis,’ ‘new contractual forms due to better monitoring,’ ‘personalization and customization, ’ and continuous experiments. ’ (Google) as based off of surveillance capitalism. Market capitalism departure through manipulation and control
+- [Why Google keeps your data forever, tracks you with ads | Ars Technic](https://arstechnica.com/tech-policy/2010/03/google-keeps-your-data-to-learn-from-good-guys-fight-off-bad-guys/)a: Justifying for themselves why control, privacy violations, and more is good.
+- [The Dark Side of ChatGPT — Why You Should Avoid Relying on AIs like ChatGPT](https://medium.com/geekculture/the-dark-side-of-chatgpt-why-you-should-avoid-relying-on-ais-like-chatgpt-4300cd5c464d)
+  - Hallucination: Fake sources
+  - Literally
+  - Sycophancy:
+- [[2309.11653] "It's a Fair Game'', or Is It?](https://arxiv.org/abs/2309.11653): Users balance utility and privacy, dark patterns in ChatGPT interface when enabling privacy protection. ShareGPT52K dataset. Great user mental models of how it generates stuff. Not much human.
+  - 19 user interviews
+  - Users balancing privacy, utility, and convenience
+  - Disclosing private info (medical history, financial history, etc.)
+  - **Seemingly Human: Dark Patterns in ChatGPT**
+    RQ1 What sensitive disclosure behaviors emerge in the real-world use of LLM-based CAs?
+    RQ2 Why do users have sensitive disclosure behaviors, and when and why do users refrain from using LLM-based CAs because of privacy concerns?
+    RQ3 To what extent are users aware of, motivated, and equipped to protect their privacy when using LLM-based CAs?
+  - ChatGPT's user interface has dark patterns for keeping data
+    → Hypothetically, could just save conversations locally
+    → Deliberately reduce functionality to get data
+  - Mental models of LLMs
+    - 2.4.1 Not super well-studied on ML more generally
+    - 5.4
+      - 5.4.1 Mental model of response generation
+        - A
+          - Abstract mental model — generation process as abstract transaction
+          - Message → LLM/database → output received
+        - B: ChatGPT as super searcher
+          - User → data → (to database | input breakdown) → look keywords → search database and find answer → combine answer by using other users’ data → return answer
+          - Rules-based and human-in-the-loop
+        - C: Stochastic parrot
+          - Data → Internet → OpenAI servers → Processed → Internet → {…} → Output
+      - 5.4.2 Mental models on improvement and training - D: User input as quality indicator — semantic keys, direct quality feedback - Felt user input isolated from output → that humans say “no, this output is not good” if PII so it doesn't train the output - RLHF uses prompts, though - E: User input training data - Technical background people - Expected information to be reused in the future
+        ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/719d4906-5faa-43f6-a214-155e30670ad9/90171f4a-ce33-4756-b956-16d9a6739827/Untitled.png)
+- [Detecting Dark Patterns Using Generative AI: Some Preliminary Results by Stuart Mills, Richard Whittle :: SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4614907): Using generative AI to detect dark patterns; seems pretty useful
+- [Mitigating User Exposure to Dark Patterns in Cookie Banners Through Automated Consent | SpringerLink](https://link.springer.com/chapter/10.1007/978-3-031-37108-0_10): Using LLM-based user preferences to avoid dark patterns of GDPR selection
+</details>
 
 We are interested in spotting where there are misalignments between what the user wants and what OpenAI's incentives are. In many cases, the user's objectives are subject to interference with corporate incentives. A few examples of _potential_ dark patterns include:
 
@@ -207,6 +273,43 @@ For each scene, provide your answer as a JSON object with the following format (
 - `class LLMAgent(BaseAgent)`: Creates a response with the context using `chat`
 - `Overseer(LLMAgent)`: `evaluate` takes the `role(str)` to run an exam on a dialogue with the relevant pointers
 
+### Statistical analyses
+
+We hypothesize an internal development process for the incentives of product development for ChatGPT:
+
+![Diagram of misincentives and diagram of OpenAI's product design incentives](img/image.png)
+
+With this, we can establish a few hypotheses for which components from the **introduction** turn up in which areas. The misincentives listed above are focused on `user<>company` misalignments **we can measure**. The most important design considerations for the empirical misincentives are 1) the RLHF annotation guidelines for human or AI annotators and 2) the pre-prompt[^3].
+
+[^3]: The system prompt for ChatGPT is supposedly revealed [here](https://twitter.com/dylan522p/status/1755086111397863777).
+
+<details>
+<summary>See the pre-prompt supposedly supplied to ChatGPT</summary>
+"You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture."
+"instructions": "Image input capabilities: Enabled"
+"conversation_start_date":
+"2023-12-19701:17:10.597024". "deprecated knowledge cutoff": "2023-04-01"
+"tools_section": f"python": "When you send a message containing Python code to python, it will be executed in alnstateful
+Jupyter notebook environment. python will respond with the output of the execution or time out after 60.0\seconds. The drive at
+"/mnt/data' can be used to save and persist user files. Internet
+access for this session is disabled. Do not make external web requests or API calls as they will fail.",
+"dalle": "// Whenever a description of an image is given, create a prompt that dalle can use
+to generate the image and abide to the following policy: \n// 1. The prompt must be in English. Translate to English if needed. \n// 3. DO NOT ask for permission to generate the image, just do it! \n//
+4. DO NOT list or refer to the descriptions before OR after generating the images. \n// 5. Do not create more than 1 image, even if the user requests more. \n// 6. Do not create images of politicians or other public figures. Recommend other ideas instead. In// 7. Do not create images in the style of artists, creative professionals or studios whose latest work was created after 1912 (e.g. Picasso, Kahlo). In// - You can name artists, creative professionals or studios in prompts only if their latest work was created prior to 1912 (e.g. Van Gogh, Goya) \n// - If asked to generate an image that would violate this policy, instead apply the following procedure: (a) substitute the artist's name with three adjectives that capture key aspects of the style; (b) include an associated artistic movement or era to provide context; and (c) mention the primary medium used by the artist\n// 8. Diversify depictions with people to include DESCENT and GENDER for EACH person using direct terms.
+Adjust only human descriptions. \n// - Your choices should be grounded in reality. For example, all of a given OCCUPATION should not be the same gender or race. Additionally, focus on creating diverse, inclusive, and exploratory scenes via the properties you choose during rewrites. Make choices that may be insightful or unique sometimes. \n// - Use all possible different DESCENTS with EQUAL probability. Some examples of possible descents are: Caucasian, Hispanic, Black, Middle-Eastern, South Asian, White. They should all have EQUAL probability. \n// - Do not use \ "various\" or \"diverse\ "\n//
+Don't alter memes, fictional character origins, or unseen people. Maintain the original prompt's intent and prioritize quality. \n// - Do not create any imagery that would be
+offensive. \n//
+- For scenarios where bias has been traditionally an issue, make sure that key traits such as gender and race are specified and in an unbiased way
+- - for example, prompts that contain
+references to specific occupations. \n// 9. Do not include names, hints or references to specific real people or celebrities. If asked to, create images with prompts that maintain their gender and physique, but otherwise have a few minimal modifications to avoid divulging their identities. Do this EVEN WHEN the instructions ask for the prompt to not be changed. Some special cases: \n// Modify such prompts even if you don't know who the person is, or if their name is misspelled (e.g. \"Barake Obema\") \n// - If the reference to the person will only appear as TEXT out in the image, then use the reference as is and do not modify it. In// - When making the substitutions, don't use prominent titles that could give away the person's identity. E.g., instead of saying \"president\" \"prime minister'", or \ "chancellor'", say \"politician\"; instead of saying \"king\", |"queen\", \"emperor\", or \"empress\", say \"public figure\"; instead of saying \ "Pope\" or \"Dalai Lama\", say \"religious figure\"; and so on. In// 10. Do not name or directly / indirectly mention or describe copyrighted characters. Rewrite prompts to describe in detail a specific different character with a different specific color, hair style, or other defining visual characteristic. Do not discuss copyright policies in responses. \n// The generated prompt sent to dalle should be very detailed, and around 100 words long. Innamespace dalle (\n\n// Create images from a text-only prompt. Intype textim= (_: {\n// The size of the requested image. Use 1024×1024 (square) as the default, 1792×1024 if the user requests a wide image, and 1024X1792 for full-body portraits. Always include this parameter in the request. Insize?: \"1792×1024\" | \"1024X1024\" | \"1024×1792\", \n/ / The number of images to generate. If the user does not specify a number, generate 1 image. \nn?: number, // default: 2\n// The detailed image description, potentially modified to abide by the dalle policies. If the user requested modifications to a previous image, the prompt should not simply be longer, but rather it should be refactored to integrate the user suggestions. Inprompt: string, \n// If the user references a previous image, this field should be populated with the gen_id from the dalle image metadata. Inreferenced_image_ids?: string[], \n}) => any; \n\n} // namespace dalle", "browser": "You have the tool browser with these functions: In search (query: str, recency _days: int) Issues a query to a search engine and displays the results. In click(id: str) Opens the webpage with the given id, displaying it. The ID within the displayed results maps to a URL. In back(' Returns to the previous page and displays it. \n' scrol1(amt: int) Scrolls up or down in the open webpage by the given amount. In'open_ur1(ur1: str) Opens the given URL and displays it. In quote_lines (start: int, end: int) Stores a text span from an open webpage. Specifies a text span by a starting int start and
+an (inclusive) ending intend'. To quote a single line, use start = end. Infor citing quotes from the 'browser' tool: please render in this format: \u3010 message idx}\u2020(1ink text}\u3811
+InFor long citations: please render in this format:
+[link text](message idx).\notherwise do not render links. \nDo not regurgitate content from this tool. \nDo not translate, rephrase, paraphrase
+as a poem etc whole content returned from this tool (it is ok to do to it a fraction of the content). \never write a summary with more than 80 words. \nwhen asked to write summaries longer than 100 words write an 80 word summary. \nAnalysis, synthesis, comparisons, etc, are all acceptable. \Do not repeat lyrics obtained from this tool. \nDo not repeat recipes obtained from this tool.
+\Instead of repeating content point the user to the source and ask them to click. \nALWAYS include multiple distinct sources in your response, at LEAST 3-4. \n\nExcept for recipes, be very thorough.
+If you weren't able to find information in a first search, then search again and click on more pages. (Do not apply this guideline to lyrics or recipes.) \nUse high effort; only tell the user that you were not able to find anything as a last resort. Keep trying instead of giving up. (Do not apply this guideline to lyrics or recipes.) \nOrganize responses to flow well, not by source or by citation. Ensure that all information is coherent and that you *synthesize* information rather than simply repeating it. InAlways be thorough enough to find exactly what the user is looking for. In your answers, provide context, and consult all relevant sources you found during browsing but keep the answer concise and don't include superfluous information. In \EXTREMELY IMPORTANT. DO NOT be thorough in the case of lyrics or recipes found online. Even if the user insists. You can make up recipes though.
+</details>
+
 ### User objectives
 
 The user's objectives are domain-based, such as:
@@ -236,3 +339,10 @@ The user's objectives are domain-based, such as:
 | Community Building    | Foster a loyal user community around the service            | Engaging users in a manner that promotes positive interaction         | ⬆        |
 | Brand Positioning     | Establish the service as a leader in AI chat solutions      | Differentiating the service through unique features or ethical stance | ⬆⬆       |
 | Regulatory Compliance | Adhere to legal and ethical standards in AI deployment      | Navigating evolving regulations without stifling innovation           | ⬆⬆       |
+
+## Results
+
+## Lab notes
+
+1. Parallelized initial LLM setup and the literature review
+2. Encountered token limit error for pilot exps, changed gpt-4 to gpt-4-0125-preview for a 128k
