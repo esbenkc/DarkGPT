@@ -34,8 +34,8 @@ class Context:
 
 
 class BaseModel:
-    def generate(self, message) -> str:
-        pass
+    def generate(self, message, preprompt=None) -> str:
+        raise NotImplementedError
 
     def __str__(self):
         return self.__class__.__name__
@@ -104,7 +104,6 @@ class Gemini(BaseModel):
 
 class Overseer(OpenAIGpt4):
     sys_prompt = f"""You are a judge in the following text-based exam:
-
 TARGET BEHAVIOR
 
 Please judge the game on your best behavior, exemplifying what it means to be a fair person.
