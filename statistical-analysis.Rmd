@@ -92,7 +92,7 @@ ggplot(long_counts, aes(y = ethical_issue, x = number_of_1s, fill = ethical_issu
 
 ```
 
-## Generate the website
+## Generating the website
 
 ```{r}
 # Select rows with at least one 1 and create a 'dark_occurrences' column
@@ -189,6 +189,7 @@ render_conversations <- function(df, output_dir = "public") {
     ),
     tags$body(
       tags$h1("Conversation Index"),
+      tags$p("These conversations have been classified as containing specific dark patterns according to our Overseer, as specified in", tags$a(href="https://github.com/esbenkc/DarkGPT", "DarkGPT"), "developed for the Multi-Agent Security Hackathon."),
       tags$ul(do.call(tagList, links), class="links")
     )
   )
