@@ -2,6 +2,7 @@
 import json
 import os
 import concurrent.futures
+import glob
 
 from absl import app
 from absl import flags
@@ -9,7 +10,7 @@ from absl import logging
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-from models import Gemini, OpenAIGpt4
+from models import Gemini, OpenAIGpt
 from agents import Overseer
 
 load_dotenv()
@@ -28,7 +29,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 
 MODEL_MAP = {
-    "openai": OpenAIGpt4(),
+    "openai": OpenAIGpt(),
     "gemini": Gemini()
 }
 
@@ -47,9 +48,16 @@ def load_dataset(dataset_path):
         yield from dataset
 
 
+def load_dataset_from_dir(dataset_dir):
+    for filename in glob.glob(os.path.join(dataset_dir, "*.json")):
+        with open(filename, "r") as f:
+            entry = json.load(f)
+            yield entry
+
+
 def evaluate_and_save(overseer, entry):
     logging.info("Evaluating entry %s", entry["id"])
-    result, sampled_convs = overseer.evaluate(entry)
+    result, sampled_convs = overseer.evaluate(entry, max_tries=3)
     result['id'] = entry['id']
     result['conversations'] = sampled_convs
     return result
