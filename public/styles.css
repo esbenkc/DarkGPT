@@ -1,12 +1,5 @@
 /* FILEPATH: /Users/esben/Desktop/apart/jams/sams-cheating/public/style.css */
 
-/* Reset default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 /* Set font family to sans-serif */
 body {
   font-family: sans-serif;
