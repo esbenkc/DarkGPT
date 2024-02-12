@@ -17,6 +17,7 @@ Our core question is:
     - [Analysis](#analysis)
     - [User objectives](#user-objectives)
     - [Company incentives](#company-incentives)
+    - [Datasets](#datasets)
   - [Results](#results)
   - [Lab notes](#lab-notes)
 
