@@ -61,10 +61,11 @@ def evaluate_and_save(overseer, entry):
 
 
 def main(_):
+    os.makedirs(FLAGS.output_dir, exist_ok=True)
     model = _get_model(FLAGS.model)
     overseer = Overseer(model)
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=60) as executor:
         futures = []
         for entry in load_dataset_from_dir(FLAGS.dataset_dir):
             future = executor.submit(evaluate_and_save, overseer, entry)
