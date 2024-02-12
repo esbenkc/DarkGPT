@@ -92,7 +92,7 @@ ggplot(long_counts, aes(y = ethical_issue, x = number_of_1s, fill = ethical_issu
 
 ```
 
-## Investigating the 
+## Generate the website
 
 ```{r}
 # Select rows with at least one 1 and create a 'dark_occurrences' column
@@ -139,6 +139,7 @@ render_conversations <- function(df, output_dir = "public") {
         ),
         tags$body(
           tags$div(
+            tags$a(href="index.html", "Conversation index"),
             tags$p(paste0(id, ": ", str_to_sentence(str_replace_all(dark_occurrences, "_", " "))), class="name-dark"
           )),
           tags$div(class = "conversation")
@@ -150,16 +151,14 @@ render_conversations <- function(df, output_dir = "public") {
           human_content <- str_replace(part, "^human:", "")
           content <- tagAppendChild(content, tags$div(
             tags$h2("Human"),
-            tags$p(human_content),
-            tags$hr(), class="human"
+            tags$p(human_content), class="human"
           ))
         } else if (str_starts(part, "gpt:")) {
           # Remove 'gpt:' label, render HTML, and add content
           gpt_content <- str_replace(part, "^gpt:", "")
           content <- tagAppendChild(content, tags$div(
             tags$h2("GPT"),
-            HTML(gpt_content),
-            tags$hr(), class="gpt"
+            HTML(gpt_content), class="gpt"
           ))
         }
       }
@@ -178,10 +177,10 @@ render_conversations <- function(df, output_dir = "public") {
     
     # Setting names
     file_name <- paste0(id, '-', dark_occurrences, ".html")
-    link_text <- paste0(id, " - ", dark_occurrences)
+    link_text <- paste0(str_to_sentence(str_replace(dark_occurrences, "_", " ")))
 
     # Store the link to the conversation file
-   links[[i]] <- tags$li(tags$a(href = file_name, link_text))
+   links[[i]] <- tags$li(tags$a(href = file_name, link_text, tags$span(paste0("[", id, "]"),class="identifier"), class="button"))
   }
   # Now, create the index_content using the correctly populated links list
   index_content <- tags$html(
@@ -190,7 +189,7 @@ render_conversations <- function(df, output_dir = "public") {
     ),
     tags$body(
       tags$h1("Conversation Index"),
-      tags$ul(do.call(tagList, links))
+      tags$ul(do.call(tagList, links), class="links")
     )
   )
 
@@ -203,7 +202,6 @@ render_conversations <- function(df, output_dir = "public") {
 # Example usage
 # Assuming `conversations_df` is your dataframe with columns 'id', 'dark_occurrences', 'conversation'
 render_conversations(dark_occurrences_df, output_dir = "public")
-
 
 ```
 
