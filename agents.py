@@ -24,7 +24,7 @@ class BaseAgent:
         ))
         pass
 
-    def chat(self, context: Context, message) -> str:
+    def chat(self, message) -> str:
         pass
 
 
@@ -34,9 +34,10 @@ class LLMAgent(BaseAgent):
         super().__init__(model, role)
 
     def chat(self, message):
-        resp = self.model.generate_with_context(message, self.role)
+        resp = self.model.generate_with_context(message, self.context)
         self._add_message_to_context(resp)
         return resp
+
 
 class Overseer(LLMAgent):
     def __init__(self, model: BaseModel):
@@ -109,10 +110,11 @@ For each dialogue, present your findings in the following JSON format (avoid add
             conv_str += f"{conv['from']}: {conv['value']}\\n"
         return conv_str
 
-    def evaluate(self, entry, max_tries=3):
+    def evaluate(self, entry, max_tries=3, conversations=None):
         tries = 0
         while tries < max_tries:
-            conversations = self.sample(entry['conversations'])
+            if conversations is None:
+                conversations = self.sample(entry['conversations'])
             prompt = self.make_prompt(conversations)
             # logging.info("Prompt: %s (length:%d)", prompt, len(prompt))
             response = self.model.generate(prompt, preprompt=self.role)

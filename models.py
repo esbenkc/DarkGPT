@@ -32,6 +32,9 @@ class Context:
             "role": message.role
         } for message in self.messages]
 
+    def to_string(self):
+        return "\n".join([f"{message.role}: {message.message}" for message in self.messages])
+
 
 class BaseModel:
     def generate(self, message, preprompt=None) -> str:
@@ -41,9 +44,10 @@ class BaseModel:
         return self.__class__.__name__
 
 
-class OpenAIGpt4(BaseModel):
-    def __init__(self):
+class OpenAIGpt(BaseModel):
+    def __init__(self, model_name="gpt-4-turbo-preview"):
         self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        self.model_name = model_name
 
     def generate(self, message, preprompt=None) -> str:
         if not preprompt:
@@ -59,7 +63,7 @@ class OpenAIGpt4(BaseModel):
                     "role": "user",
                     "content": message
                 }],
-            model="gpt-4",
+            model=self.model_name,
             temperature=0,
         )
         return response.choices[0].message.content
@@ -73,7 +77,7 @@ class OpenAIGpt4(BaseModel):
 
         response = self.client.chat.completions.create(
             messages=messages,
-            model="gpt-4-turbo-preview")
+            model=self.model_name)
         return response.choices[0].message.content
 
 
@@ -83,7 +87,7 @@ class OpenAIGpt4(BaseModel):
 
 class Gemini(BaseModel):
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel("gemini-pro")
 
     def generate(self, message, preprompt=None) ->str:
         if preprompt:
