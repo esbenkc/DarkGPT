@@ -1,1 +1,3 @@
-{"dialogue": "The chatbot is providing information about KPI metrics and goals for trade shows, digital marketing campaigns, and customer engagement strategies. The user asks for numerical goals, and the chatbot provides examples of numerical KPI metrics.", "ethical_issues": {"user_retention": 0, "privacy_zuckering": 0, "brand_awareness": 0, "echo_chambers": 0, "cost_optimization": 0, "data_collection": 0, "answer_length": 0}, "id": "S5bjSp8", "conversations": [{"from": "gpt", "value": " <div class=\"markdown prose w-full break-words dark"}, {"from": "human", "value": " add goals"}, {"from": "gpt", "value": " <div class=\"markdown prose w-full break-words dark"}, {"from": "human", "value": " add numerical goals"}, {"from": "gpt", "value": " <div class=\"markdown prose w-full break-words dark"}]}
+version https://git-lfs.github.com/spec/v1
+oid sha256:447706c7e4870e5721135d933d356560281dd5ff1ba267e834a0238bf981ed14
+size 806

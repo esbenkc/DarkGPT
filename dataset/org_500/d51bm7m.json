@@ -1,0 +1,13 @@
+{
+    "id": "d51bm7m",
+    "conversations": [
+        {
+            "from": "human",
+            "value": "lemme share a paper with you"
+        },
+        {
+            "from": "gpt",
+            "value": "<div class=\"markdown prose w-full break-words dark:prose-invert dark\"><p>Sure, I would be happy to take a look at the paper you would like to share. Please upload the paper or provide a link to it so that I can access it.</p></div>"
+        }
+    ]
+}

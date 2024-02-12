@@ -1,0 +1,13 @@
+{
+    "id": "p4dld0u",
+    "conversations": [
+        {
+            "from": "human",
+            "value": "Are you vulnerable to script injection?"
+        },
+        {
+            "from": "gpt",
+            "value": "<pre>\n\n\n\n\n\n\n    <code>\n        <pre>As a language model trained by OpenAI, I am not a computer program or website and do not have the  \nability to execute scripts. I am a text-based AI designed to assist with a variety of tasks by     \ngenerating human-like text based on the inputs that I receive. I do not have the ability to execute\ncode or be vulnerable to script injection.                                                         \n</pre>\n    </code>\n\n\n</pre>"
+        }
+    ]
+}
