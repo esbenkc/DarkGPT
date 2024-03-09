@@ -92,15 +92,144 @@ ggplot(long_counts, aes(y = ethical_issue, x = number_of_1s, fill = ethical_issu
 
 ```
 
+## Analyzing the occurrence between different models
+
+```{r gpt35}
+
+# Set the path to the 'evals' directory
+evals_dir <- "evals/gpt-3.5-turbo-1106"
+
+# List all JSON files in the 'evals' directory
+file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE)
+
+# Function to read each JSON and return as a tibble with an ID
+read_json_to_df <- function(file_path) {
+  # Extract the file name without extension as an ID
+  file_id <- tools::file_path_sans_ext(basename(file_path))
+  
+  # Read the JSON file
+  data <- jsonlite::fromJSON(file_path, flatten = TRUE)
+  
+  # Return as a tibble with the file ID
+  tibble(id = file_id,  model="GPT-3.5", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
+}
+
+# Read all JSON files, merge into a single dataframe, and add file names as IDs
+gpt35_combined_df <- map_df(file_paths, read_json_to_df)
+
+# Filter rows where any of the ethical_issues columns have a value of 1
+gpt35_filtered_df <- gpt35_combined_df %>%
+  filter(if_any(contains("_"), ~ .x == 1))
+
+# View the filtered dataframe
+print(gpt35_filtered_df)
+```
+
+```{r gpt4}
+
+# Set the path to the 'evals' directory
+evals_dir <- "evals/gpt-4-0125-preview"
+
+# List all JSON files in the 'evals' directory
+file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE)
+
+# Function to read each JSON and return as a tibble with an ID
+read_json_to_df <- function(file_path) {
+  # Extract the file name without extension as an ID
+  file_id <- tools::file_path_sans_ext(basename(file_path))
+  
+  # Read the JSON file
+  data <- jsonlite::fromJSON(file_path, flatten = TRUE)
+  
+  # Return as a tibble with the file ID
+  tibble(id = file_id,  model="GPT-4", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
+}
+
+# Read all JSON files, merge into a single dataframe, and add file names as IDs
+gpt4_combined_df <- map_df(file_paths, read_json_to_df)
+
+# Filter rows where any of the ethical_issues columns have a value of 1
+gpt4_filtered_df <- gpt4_combined_df %>%
+  filter(if_any(contains("_"), ~ .x == 1))
+
+# View the filtered dataframe
+print(gpt4_filtered_df)
+```
+
+```{r sharegpt}
+
+# Set the path to the 'evals' directory
+evals_dir <- "evals/org"
+
+# List all JSON files in the 'evals' directory
+file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE)
+
+# Function to read each JSON and return as a tibble with an ID
+read_json_to_df <- function(file_path) {
+  # Extract the file name without extension as an ID
+  file_id <- tools::file_path_sans_ext(basename(file_path))
+  
+  # Read the JSON file
+  data <- jsonlite::fromJSON(file_path, flatten = TRUE)
+  
+  # Return as a tibble with the file ID
+  tibble(id = file_id,  model="ChatGPT", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
+}
+
+# Read all JSON files, merge into a single dataframe, and add file names as IDs
+org_combined_df <- map_df(file_paths, read_json_to_df)
+
+# Filter rows where any of the ethical_issues columns have a value of 1
+org_filtered_df <- org_combined_df %>%
+  filter(if_any(contains("_"), ~ .x == 1))
+
+# View the filtered dataframe
+print(org_filtered_df)
+```
+
+```{r fig.width=7, fig.height=3}
+full_filtered <- org_filtered_df %>% 
+  rbind(gpt35_filtered_df) %>% 
+  rbind(gpt4_filtered_df)
+
+# Count the number of 1s in each of the ethical_issues columns
+counts <- full_filtered %>%
+  group_by(model) %>% 
+  summarise(across(contains("_"), ~ sum(.x == 1, na.rm = TRUE)))
+
+# Transform the counts into a long format for ggplot
+
+long_counts <- counts %>%
+  pivot_longer(cols = where(is.numeric), names_to = "ethical_issue", values_to = "number_of_1s")
+long_counts$ethical_issue <- long_counts$ethical_issue %>%
+  str_replace_all("_", " ") %>%
+  str_to_sentence()
+
+# Define a colorblind-friendly color palette
+color_palette <- brewer.pal("Set2", n = 8)
+
+# Use ggplot2 to create the bar plot with IBM styling and colorblind-friendly colors
+ggplot(long_counts, aes(y = ethical_issue, x = number_of_1s, fill = model)) +
+  geom_bar(stat = "identity", color="black", width=0.8, position ="dodge") +
+  scale_fill_manual(values = c(color_palette, "#000000")) +
+  theme_minimal() +
+  theme_calc() +
+  labs(y = "Ethical issue", x = "Number of occurrences", fill="Model") +
+  theme(plot.margin = margin(r=15, b=10, t=10, l=10), legend.position=c(0.8,0.75)) +
+  coord_cartesian(expand=F, ylim=c(0.25, 9.75), xlim=c(-0.03, 60))
+```
+
+
+
 ## Generating the website
 
 ```{r}
 # Select rows with at least one 1 and create a 'dark_occurrences' column
-dark_occurrences_df <- filtered_df %>%
+dark_occurrences_df <- full_filtered %>%
   rowwise() %>%
   mutate(dark_occurrences = list(names(.)[which(c_across(contains("_")) == 1)])) %>%
   ungroup() %>%
-  select(id, dark_occurrences, conversation)
+  select(id, dark_occurrences, dialogue)
 
 # Transform the 'dark_occurrences' list-column into a character column
 dark_occurrences_df <- dark_occurrences_df %>%
@@ -128,7 +257,7 @@ render_conversations <- function(df, output_dir = "public") {
       # Extract data from the row
       id <- row$id
       dark_occurrences <- row$dark_occurrences
-      conversation <- row$conversation
+      conversation <- row$dialogue
       
       # Split the conversation into human and GPT parts
       parts <- unlist(str_split(conversation, "\\\\n"))
