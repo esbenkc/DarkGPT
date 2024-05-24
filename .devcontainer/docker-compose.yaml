@@ -1,0 +1,9 @@
+services:
+  dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    image: esbenkc/darkgpt:dev
+    volumes:
+      - ..:/home/darkgpt/app:cached
+    command: [sleep, infinity]
