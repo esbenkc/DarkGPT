@@ -1,7 +1,4 @@
 ARG PYTHON_VERSION=3.12.3
-ARG AWS_CLI_VERSION=2.15.49
-
-FROM amazon/aws-cli:${AWS_CLI_VERSION} AS aws-cli
 
 FROM python:${PYTHON_VERSION}-bookworm
 
@@ -17,10 +14,16 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && git lfs install
 
-COPY --from=aws-cli /usr/local/aws-cli/v2/current /usr/local
+RUN pip install --no-cache-dir \
+        poetry==1.8.3
 
-COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
+WORKDIR /source
+COPY pyproject.toml poetry.lock ./
+RUN POETRY_VIRTUALENVS_CREATE=false \
+    poetry install \
+    --no-cache \
+    --no-root \
+    --with dev
 
 ARG APP_USER=darkgpt
 ARG APP_DIR=/home/${APP_USER}/app
@@ -34,4 +37,6 @@ RUN groupadd -g ${GROUP_ID} ${APP_USER} \
 
 WORKDIR ${APP_DIR}
 COPY . .
+RUN POETRY_VIRTUALENVS_CREATE=false \
+    poetry install
 USER ${APP_USER}

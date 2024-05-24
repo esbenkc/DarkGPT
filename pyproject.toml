@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "darkgpt"
+version = "0.1.0"
+description = ""
+authors = ["Esben Kran <esben@kran.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+absl-py = "*"
+google-generativeai = "*"
+openai = "*"
+python-dotenv = "*"
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "*"
+isort = "*"
+
+[tool.poetry.group.system]
+optional = true
+
+[tool.poetry.group.system.dependencies]
+poetry = "1.8.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

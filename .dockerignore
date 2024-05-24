@@ -1,3 +1,6 @@
 *
-!requirements.txt
 
+!darkgpt/*.py
+!poetry.lock
+!pyproject.toml
+!README.md
