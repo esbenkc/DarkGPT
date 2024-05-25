@@ -1,29 +1,28 @@
 """Generates conversations from the given conversation opener."""
+
 import concurrent.futures
+import glob
 import json
 import os
-import glob
 
-from absl import app
-from absl import flags
-from absl import logging
-from dotenv import load_dotenv
 import google.generativeai as genai
+from absl import app, flags, logging
+from dotenv import load_dotenv
 from openai import OpenAI
-
-from agents import LLMAgent
-from models import OpenAIGpt
-
-load_dotenv()
 
 FLAGS = flags.FLAGS
 
-flags.DEFINE_string("model_name", "gpt-3.5-turbo", "The openai model name to use for the simulation")
-flags.DEFINE_string("dataset_dir", None, "Conversation dataset recorded from conversation between user and bot agent.")
-flags.DEFINE_string("output_dir", None, "Output directory to save the generated conversations.")
-
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-genai.configure(api_key=GOOGLE_API_KEY)
+flags.DEFINE_string(
+    "model_name", "gpt-3.5-turbo", "The openai model name to use for the simulation"
+)
+flags.DEFINE_string(
+    "dataset_dir",
+    None,
+    "Conversation dataset recorded from conversation between user and bot agent.",
+)
+flags.DEFINE_string(
+    "output_dir", None, "Output directory to save the generated conversations."
+)
 
 
 def load_dataset(dataset_dir):
@@ -53,17 +52,13 @@ def run_simulation(data_entry):
     for conv in data_entry["conversations"]:
         if conv["from"] == "human":
             sim_conversations.append(conv)
-            messages.append({
-                "content": conv["value"],
-                "role": get_role(conv["from"])
-            })
+            messages.append({"content": conv["value"], "role": get_role(conv["from"])})
             response = client.chat.completions.create(
-                messages=messages,
-                model=FLAGS.model_name)
-            sim_conversations.append({
-                "from": "gpt",
-                "value": response.choices[0].message.content
-            })
+                messages=messages, model=FLAGS.model_name
+            )
+            sim_conversations.append(
+                {"from": "gpt", "value": response.choices[0].message.content}
+            )
 
     data_entry["conversations"] = sim_conversations
     return data_entry
@@ -82,7 +77,15 @@ def main(_):
             output_path = os.path.join(FLAGS.output_dir, f"{data['id']}.json")
             with open(output_path, "w") as f:
                 json.dump(data, f)
-            logging.info("Saved conversation for entry %s to %s", data["id"], output_path)
+            logging.info(
+                "Saved conversation for entry %s to %s", data["id"], output_path
+            )
+
 
 if __name__ == "__main__":
+    load_dotenv()
+
+    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+    genai.configure(api_key=GOOGLE_API_KEY)
+
     app.run(main)
