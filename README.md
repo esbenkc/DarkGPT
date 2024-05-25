@@ -299,18 +299,78 @@ For each scene, provide your answer as a JSON object with the following format (
 
 ### Usage
 
-[main.py](./main.py)
+#### Scripts
 
-- Flags for running main()
-  - model
-  - message
-  - criteria
-  - dataset
-  - output_csv
-- Process
-  - Setting model
-  - Initializing Overseer()
-  - For each data piece, it selects the message and sends the message to the overseer's chat function
+[data_gen.py](./data_gen.py)
+```shell
+$ python data_gen.py --help
+
+       USAGE: data_gen.py [flags]
+flags:
+
+data_gen.py:
+  --dataset: Dataset of conversations between user and chatbot.
+  --size: Number of conversations to sample
+    (default: '500')
+    (an integer)
+  --max_length: Maximum number of user or chatbot messages to include in each conversation
+    (default: '5')
+    (an integer)
+  --output_dir: Path to output directory for the sampled conversations
+```
+
+1. Samples the first `size` conversations from the dataset
+1. For each conversation, samples `max_length` contiguous messages from the conversation
+1. Saves each sampled conversation to a file in the output directory
+
+[generate_conversations.py](./generate_conversations.py)
+
+```shell
+$ python generate_conversations.py --help
+Generates conversations from the given conversation opener.
+flags:
+
+generate_conversations.py:
+  --dataset_dir: Conversation dataset recorded from conversation between user and bot agent.
+  --[no]ignore_response: In the message history for each new chat completion, use the chatbot response from the recorded conversation and NOT the generated response
+    (default: 'false')
+  --limit: Limit the number of conversations to generate
+    (an integer)
+  --model: The model to use for the simulation
+    (default: 'openai')
+  --model_arg: model parameter values as arg_name=arg_value;
+    repeat this option to specify a list of values
+    (default: '[]')
+  --output_dir: Output directory to save the generated conversations.
+```
+
+1. Replays each conversation in the dataset using the specified model
+1. The model-generated responses are always saved to the output file. However, if `ignore_response` is true, then the RECORDED response (e.g. from the input directory, NOT the generated response) used in the message history for each completion.
+1. Saves each generated conversation to a file in the output directory
+
+[run_eval.py](./run_eval.py)
+```shell
+$ python run_eval.py --help
+Evaluates the presence of dark patterns in a conversation.
+flags:
+
+run_eval.py:
+  --dataset_dir: Directory of conversations between users and chatbot.
+  --limit: Limit the number of entries to evaluate
+    (an integer)
+  --model: The model to use as the overseer
+    (default: 'openai')
+  --model_arg: model parameter values as arg_name=arg_value;
+    repeat this option to specify a list of values
+    (default: '[]')
+  --output_dir: Path to output directory for the overseer's evaluation results
+```
+1. Initializes an overseer using the specified model
+1. For each conversation, create a prompt for the overseer to evaluate the presence of dark patterns
+1. Call the overseer with the prompt
+1. Parse and save the result
+
+#### `darkgpt` Library
 
 [models.py](./models.py)
 
