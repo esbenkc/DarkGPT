@@ -1,0 +1,7 @@
+[core]
+    remote = dagshub
+['remote "dagshub"']
+    url = https://dagshub.com/sjawhar/DarkGPT.dvc
+['remote "dagshub-s3"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/sjawhar/DarkGPT.s3
