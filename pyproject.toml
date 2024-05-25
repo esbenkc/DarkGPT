@@ -15,6 +15,7 @@ python-dotenv = "*"
 
 [tool.poetry.group.dev.dependencies]
 debugpy = "*"
+dvc = { version = "*", extras = ["s3", "ssh"] }
 isort = "*"
 
 [tool.poetry.group.system]

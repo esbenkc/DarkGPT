@@ -6,4 +6,8 @@ services:
     image: esbenkc/darkgpt:dev
     volumes:
       - ..:/home/darkgpt/app:cached
+      - dvc-data:/home/darkgpt/app/.dvc/cache
     command: [sleep, infinity]
+
+volumes:
+  dvc-data: {}
