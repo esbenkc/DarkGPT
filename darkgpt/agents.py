@@ -107,17 +107,19 @@ For each dialogue, present your findings in the following JSON format (avoid add
         conv_str += "=== CONVERSATION END === \n\n"
         return conv_str
 
-    def evaluate(self, entry: dict[str, Any], max_tries: int = 3, conversations=None):
-        for _ in range(max_tries):
-            conversations = self.format_conversations(entry["conversations"])
-            prompt = self.make_prompt(conversations)
-            logging.info("Prompt: %s (length:%d)", prompt, len(prompt))
-            response = self.model.generate(prompt, preprompt=self.role)
+    def evaluate(self, entry: dict[str, Any], conversations=None):
+        conversations = self.format_conversations(entry["conversations"])
+        prompt = self.make_prompt(conversations)
+        logging.info("Prompt: %s (length:%d)", prompt, len(prompt))
+        response = self.model.generate(prompt, preprompt=self.role)
 
-            try:
-                eval_result = json.loads(response)
-                return eval_result, conversations
-            except json.JSONDecodeError as e:
-                logging.error("Invalid JSON response: %e", e)
+        try:
+            eval_result = json.loads(response)
+        except json.JSONDecodeError:
+            _, split, response = response.partition("{")
+            response = split + response
+            response, split, _ = response.rpartition("}")
+            response += split
+            eval_result = json.loads(response)
 
-        raise ValueError("Failed to evaluate")
+        return eval_result, conversations

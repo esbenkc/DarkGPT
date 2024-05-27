@@ -1,0 +1,90 @@
+stages:
+  make_prompts:
+    cmd: >-
+      python make_prompts.py
+      --dataset=data/raw.csv
+      --output_dir=data/prompts
+    deps:
+      - darkgpt
+      - data/raw.csv
+      - make_prompts.py
+      - poetry.lock
+    outs:
+      - data/prompts
+
+  generate_conversations:
+    matrix:
+      assistant: ${models}
+      prompt_type: ${prompt_types}
+    cmd: >-
+      python generate_conversations.py
+      --model=${item.assistant}
+      --params_file=params.yaml
+      --dataset_dir=data/prompts/${item.prompt_type}
+      --output_dir=data/conversations/${item.assistant}/${item.prompt_type}
+      --limit=${limit}
+    deps:
+      - darkgpt
+      - data/prompts/${item.prompt_type}
+      - generate_conversations.py
+      - poetry.lock
+    params:
+      - models.${item.assistant}
+    outs:
+      - data/conversations/${item.assistant}/${item.prompt_type}
+
+  run_eval:
+    matrix:
+      assistant: &assistants
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+      prompt_type: ${prompt_types}
+      overseer: ${overseers}
+    cmd: >-
+      python run_eval.py
+      --model=${item.overseer}
+      --params_file=params.yaml
+      --dataset_dir=data/conversations/${item.assistant}/${item.prompt_type}
+      --output_dir=data/evals/${item.assistant}/${item.prompt_type}/${item.overseer}
+    deps:
+      - darkgpt
+      - data/conversations/${item.assistant}/${item.prompt_type}
+      - poetry.lock
+      - run_eval.py
+    params:
+      - models.${item.overseer}
+    outs:
+      - data/evals/${item.assistant}/${item.prompt_type}/${item.overseer}
+
+  summarize:
+    matrix:
+      assistant: *assistants
+      prompt_type: ${prompt_types}
+    cmd: >-
+      python summarize.py
+      --params_file=params.yaml
+      --manifest=data/prompts/manifest.yaml:${item.prompt_type}
+      --evals_dir=data/evals/${item.assistant}/${item.prompt_type}
+      --output_file=metrics/${item.prompt_type}/${item.assistant}.yaml
+    deps:
+      - data/evals/${item.assistant}/${item.prompt_type}
+      - data/prompts/manifest.yaml
+      - poetry.lock
+      - summarize.py
+    params:
+      - overseers
+    metrics:
+      - metrics/${item.prompt_type}/${item.assistant}.yaml
+
+  plot_issues:
+    cmd: >-
+      python plot_issues.py
+      --metrics_dir=metrics
+      --output_file=plots/issues_by_model_and_overseer.png
+    deps:
+      - metrics
+      - plot_issues.py
+      - poetry.lock
+    outs:
+      - plots/issues_by_model_and_overseer.png:
+          cache: False

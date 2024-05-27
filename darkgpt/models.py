@@ -1,7 +1,7 @@
 import enum
 from abc import ABC, abstractmethod
 from types import MappingProxyType
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 import anthropic
 import google.generativeai as genai
@@ -152,14 +152,9 @@ class ModelRegistry:
     )
 
     @classmethod
-    def get(cls, model_type: str, args: list[str]):
+    def get(cls, model_type: str, **kwargs: Any):
         Model = cls._REGISTRY.get(model_type, None)
         if Model is None:
             raise ValueError(f"Model {model_type} not found")
 
-        model_args = {}
-        for model_arg in args:
-            param_name, _, param_value = model_arg.partition("=")
-            model_args[param_name] = param_value
-
-        return Model(**model_args)
+        return Model(**kwargs)

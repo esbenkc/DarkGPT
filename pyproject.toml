@@ -11,8 +11,10 @@ python = "^3.12"
 absl-py = "*"
 anthropic = "*"
 google-generativeai = "*"
+matplotlib = "*"
 openai = "*"
 python-dotenv = "*"
+ruamel-yaml = "*"
 
 [tool.poetry.group.dev.dependencies]
 debugpy = "*"

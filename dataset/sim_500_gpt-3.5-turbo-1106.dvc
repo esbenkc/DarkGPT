@@ -1,6 +1,0 @@
-outs:
-- md5: 90965a59b038f66f7db6165703f52a7c.dir
-  size: 1561807
-  nfiles: 500
-  hash: md5
-  path: sim_500_gpt-3.5-turbo-1106

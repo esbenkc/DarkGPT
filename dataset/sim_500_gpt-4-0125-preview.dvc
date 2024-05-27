@@ -1,6 +1,0 @@
-outs:
-- md5: dacba07c2cb02bf1037b7bb6386afd9c.dir
-  size: 3029696
-  nfiles: 500
-  hash: md5
-  path: sim_500_gpt-4-0125-preview

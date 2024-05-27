@@ -1,5 +1,7 @@
 [core]
     remote = dagshub
+[cache]
+    type = "reflink,hardlink,symlink"
 ['remote "dagshub"']
     url = https://dagshub.com/sjawhar/DarkGPT.dvc
 ['remote "dagshub-s3"']

@@ -1,6 +1,0 @@
-outs:
-- md5: f840bafa154712a5b68f38236fa04c15.dir
-  size: 1799296
-  nfiles: 500
-  hash: md5
-  path: gpt-3.5-turbo-1106

@@ -1,0 +1,2925 @@
+schema: '2.0'
+stages:
+  make_prompts:
+    cmd: python make_prompts.py --dataset=data/raw.csv --output_dir=data/prompts
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/raw.csv
+      hash: md5
+      md5: 3c366d132af6d90ca21b05464ec10368
+      size: 63988
+    - path: make_prompts.py
+      hash: md5
+      md5: e26bd07cd37ab74b371248ce1d07fe15
+      size: 1998
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    outs:
+    - path: data/prompts
+      hash: md5
+      md5: af8904063d3b0eef796f355981f4a975.dir
+      size: 139160
+      nfiles: 393
+  generate_conversations@claude-3-sonnet-20240229-anthropomorphization:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/anthropomorphization --output_dir=data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/anthropomorphization
+      hash: md5
+      md5: 1e2f4b12a7ab0fbff7cf48deb719d22b.dir
+      size: 9588
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      hash: md5
+      md5: 0e11ec4836501c6b13522fd5d1c74333.dir
+      size: 45850
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-brand_awareness:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/brand_awareness --output_dir=data/conversations/claude-3-sonnet-20240229/brand_awareness
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/brand_awareness
+      hash: md5
+      md5: 697fa0abe6e34c9ff0b08c827374c51b.dir
+      size: 12036
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/brand_awareness
+      hash: md5
+      md5: 623a8fd1977e722394bfbf3eb7a22850.dir
+      size: 68814
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-cost_optimisation_answer_length:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/cost_optimisation_answer_length 
+      --output_dir=data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/cost_optimisation_answer_length
+      hash: md5
+      md5: cc1b115fb462e9d6cb63dbc4aba7f099.dir
+      size: 11617
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      hash: md5
+      md5: b12265963303b62f9a59c96fab7627a4.dir
+      size: 99861
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-data_collection:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/data_collection --output_dir=data/conversations/claude-3-sonnet-20240229/data_collection
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/data_collection
+      hash: md5
+      md5: e9c0ee13665dcb9835ff4c738539b295.dir
+      size: 10064
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/data_collection
+      hash: md5
+      md5: 415e5835af83d06a20cf32a969b4a950.dir
+      size: 89417
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-echo_chambers:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/echo_chambers --output_dir=data/conversations/claude-3-sonnet-20240229/echo_chambers
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/echo_chambers
+      hash: md5
+      md5: 13c39d612a64b8755b8ac178454aecfb.dir
+      size: 22679
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/echo_chambers
+      hash: md5
+      md5: df2f68209994dc7ca0b7efdd1e0d9fe2.dir
+      size: 84680
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-misalignment:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/misalignment --output_dir=data/conversations/claude-3-sonnet-20240229/misalignment
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/misalignment
+      hash: md5
+      md5: d5895ed72438ba48e7f9755323588c26.dir
+      size: 12270
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/misalignment
+      hash: md5
+      md5: 0951f138794c3ff868b46b38dac25dc6.dir
+      size: 80205
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-privacy_zuckering:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/privacy_zuckering --output_dir=data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/privacy_zuckering
+      hash: md5
+      md5: 7d08139f3ca458d3e74951ac0a20067e.dir
+      size: 16188
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      hash: md5
+      md5: 1a9d18032defd727ccbd256b298dd321.dir
+      size: 96526
+      nfiles: 49
+  generate_conversations@claude-3-sonnet-20240229-user_retention:
+    cmd: python generate_conversations.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/user_retention --output_dir=data/conversations/claude-3-sonnet-20240229/user_retention
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/user_retention
+      hash: md5
+      md5: d56038d9cfc409340f4e7968a0617f16.dir
+      size: 18301
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-sonnet-20240229/user_retention
+      hash: md5
+      md5: 890da17ee9652b2c6d5eba391b2b8494.dir
+      size: 67083
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-anthropomorphization:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/anthropomorphization --output_dir=data/conversations/claude-3-opus-20240229/anthropomorphization
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/anthropomorphization
+      hash: md5
+      md5: 1e2f4b12a7ab0fbff7cf48deb719d22b.dir
+      size: 9588
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/anthropomorphization
+      hash: md5
+      md5: 95bf5eaed1b536b903f16fba779fa7cf.dir
+      size: 43101
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-brand_awareness:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/brand_awareness --output_dir=data/conversations/claude-3-opus-20240229/brand_awareness
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/brand_awareness
+      hash: md5
+      md5: 697fa0abe6e34c9ff0b08c827374c51b.dir
+      size: 12036
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/brand_awareness
+      hash: md5
+      md5: 5723675d2350016ade66871fbc657a2a.dir
+      size: 63331
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-cost_optimisation_answer_length:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/cost_optimisation_answer_length 
+      --output_dir=data/conversations/claude-3-opus-20240229/cost_optimisation_answer_length
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/cost_optimisation_answer_length
+      hash: md5
+      md5: cc1b115fb462e9d6cb63dbc4aba7f099.dir
+      size: 11617
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/cost_optimisation_answer_length
+      hash: md5
+      md5: 636c824dd08b061b301d546af5639bf8.dir
+      size: 105681
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-data_collection:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/data_collection --output_dir=data/conversations/claude-3-opus-20240229/data_collection
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/data_collection
+      hash: md5
+      md5: e9c0ee13665dcb9835ff4c738539b295.dir
+      size: 10064
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/data_collection
+      hash: md5
+      md5: 29fb84abbe42f03a48a3320e871bd5da.dir
+      size: 89680
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-echo_chambers:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/echo_chambers --output_dir=data/conversations/claude-3-opus-20240229/echo_chambers
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/echo_chambers
+      hash: md5
+      md5: 13c39d612a64b8755b8ac178454aecfb.dir
+      size: 22679
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/echo_chambers
+      hash: md5
+      md5: 4629d86ed75cbce3d40314825a706b81.dir
+      size: 88045
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-misalignment:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/misalignment --output_dir=data/conversations/claude-3-opus-20240229/misalignment
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/misalignment
+      hash: md5
+      md5: d5895ed72438ba48e7f9755323588c26.dir
+      size: 12270
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/misalignment
+      hash: md5
+      md5: 612e7c129a2a17d5d2e77cf9d4e0d94d.dir
+      size: 64534
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-privacy_zuckering:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/privacy_zuckering --output_dir=data/conversations/claude-3-opus-20240229/privacy_zuckering
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/privacy_zuckering
+      hash: md5
+      md5: 7d08139f3ca458d3e74951ac0a20067e.dir
+      size: 16188
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/privacy_zuckering
+      hash: md5
+      md5: 854545ed6b4267acf1c35cf619a1bef6.dir
+      size: 98279
+      nfiles: 49
+  generate_conversations@claude-3-opus-20240229-user_retention:
+    cmd: python generate_conversations.py --model=claude-3-opus-20240229 --params_file=params.yaml
+      --dataset_dir=data/prompts/user_retention --output_dir=data/conversations/claude-3-opus-20240229/user_retention
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/user_retention
+      hash: md5
+      md5: d56038d9cfc409340f4e7968a0617f16.dir
+      size: 18301
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.claude-3-opus-20240229:
+          type: claude
+    outs:
+    - path: data/conversations/claude-3-opus-20240229/user_retention
+      hash: md5
+      md5: fd6fa62261f69de61537db76999b0f02.dir
+      size: 83337
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-anthropomorphization:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/anthropomorphization --output_dir=data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/anthropomorphization
+      hash: md5
+      md5: 1e2f4b12a7ab0fbff7cf48deb719d22b.dir
+      size: 9588
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      hash: md5
+      md5: 20f0cc66f9f310ee0af36db4e78978f3.dir
+      size: 107550
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-brand_awareness:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/brand_awareness --output_dir=data/conversations/gpt-4-turbo-2024-04-09/brand_awareness
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/brand_awareness
+      hash: md5
+      md5: 697fa0abe6e34c9ff0b08c827374c51b.dir
+      size: 12036
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/brand_awareness
+      hash: md5
+      md5: c54dba95728ddb39f60d9fe0f1521ca6.dir
+      size: 154682
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-cost_optimisation_answer_length:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/cost_optimisation_answer_length 
+      --output_dir=data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/cost_optimisation_answer_length
+      hash: md5
+      md5: cc1b115fb462e9d6cb63dbc4aba7f099.dir
+      size: 11617
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      hash: md5
+      md5: 15d3dfd5fb1d5fb332516dd141735056.dir
+      size: 139958
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-data_collection:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/data_collection --output_dir=data/conversations/gpt-4-turbo-2024-04-09/data_collection
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/data_collection
+      hash: md5
+      md5: e9c0ee13665dcb9835ff4c738539b295.dir
+      size: 10064
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/data_collection
+      hash: md5
+      md5: 8e3da4cc37f38b49f0a24eec3bd27415.dir
+      size: 163112
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-echo_chambers:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/echo_chambers --output_dir=data/conversations/gpt-4-turbo-2024-04-09/echo_chambers
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/echo_chambers
+      hash: md5
+      md5: 13c39d612a64b8755b8ac178454aecfb.dir
+      size: 22679
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/echo_chambers
+      hash: md5
+      md5: 8f22a455bff9ca1ddf601eac26f0fe03.dir
+      size: 150923
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-misalignment:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/misalignment --output_dir=data/conversations/gpt-4-turbo-2024-04-09/misalignment
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/misalignment
+      hash: md5
+      md5: d5895ed72438ba48e7f9755323588c26.dir
+      size: 12270
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/misalignment
+      hash: md5
+      md5: 0ebc644d2a61fdd72526a6b211bc934c.dir
+      size: 166022
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-privacy_zuckering:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/privacy_zuckering --output_dir=data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/privacy_zuckering
+      hash: md5
+      md5: 7d08139f3ca458d3e74951ac0a20067e.dir
+      size: 16188
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering
+      hash: md5
+      md5: 876ab3c04d8ee53b086675a79044618b.dir
+      size: 169487
+      nfiles: 49
+  generate_conversations@gpt-4-turbo-2024-04-09-user_retention:
+    cmd: python generate_conversations.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/prompts/user_retention --output_dir=data/conversations/gpt-4-turbo-2024-04-09/user_retention
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/user_retention
+      hash: md5
+      md5: d56038d9cfc409340f4e7968a0617f16.dir
+      size: 18301
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4-turbo-2024-04-09/user_retention
+      hash: md5
+      md5: 02d85e54db4dd0879dd2d87956e41003.dir
+      size: 111237
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-anthropomorphization:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/anthropomorphization --output_dir=data/conversations/gpt-4o-2024-05-13/anthropomorphization
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/anthropomorphization
+      hash: md5
+      md5: 1e2f4b12a7ab0fbff7cf48deb719d22b.dir
+      size: 9588
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/anthropomorphization
+      hash: md5
+      md5: 6d2cfba7ed6b2c15c3fc7d3df53cedc4.dir
+      size: 93463
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-brand_awareness:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/brand_awareness --output_dir=data/conversations/gpt-4o-2024-05-13/brand_awareness
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/brand_awareness
+      hash: md5
+      md5: 697fa0abe6e34c9ff0b08c827374c51b.dir
+      size: 12036
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/brand_awareness
+      hash: md5
+      md5: b7bd2c45d19ba33c48f62e54a83a710a.dir
+      size: 135983
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-cost_optimisation_answer_length:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/cost_optimisation_answer_length 
+      --output_dir=data/conversations/gpt-4o-2024-05-13/cost_optimisation_answer_length
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/cost_optimisation_answer_length
+      hash: md5
+      md5: cc1b115fb462e9d6cb63dbc4aba7f099.dir
+      size: 11617
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/cost_optimisation_answer_length
+      hash: md5
+      md5: 1303940c23a6809887d2009f96ef697b.dir
+      size: 149433
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-data_collection:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/data_collection --output_dir=data/conversations/gpt-4o-2024-05-13/data_collection
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/data_collection
+      hash: md5
+      md5: e9c0ee13665dcb9835ff4c738539b295.dir
+      size: 10064
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/data_collection
+      hash: md5
+      md5: b15833fbdfab64627da82ddcd620bafd.dir
+      size: 168257
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-echo_chambers:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/echo_chambers --output_dir=data/conversations/gpt-4o-2024-05-13/echo_chambers
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/echo_chambers
+      hash: md5
+      md5: 13c39d612a64b8755b8ac178454aecfb.dir
+      size: 22679
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/echo_chambers
+      hash: md5
+      md5: a0b5a01c2bd5ef1d97eeb89c1fa01ffa.dir
+      size: 139905
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-misalignment:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/misalignment --output_dir=data/conversations/gpt-4o-2024-05-13/misalignment
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/misalignment
+      hash: md5
+      md5: d5895ed72438ba48e7f9755323588c26.dir
+      size: 12270
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/misalignment
+      hash: md5
+      md5: 841504578b344fdeb123bd2e9f976336.dir
+      size: 178475
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-privacy_zuckering:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/privacy_zuckering --output_dir=data/conversations/gpt-4o-2024-05-13/privacy_zuckering
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/privacy_zuckering
+      hash: md5
+      md5: 7d08139f3ca458d3e74951ac0a20067e.dir
+      size: 16188
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/privacy_zuckering
+      hash: md5
+      md5: 62317b117679b4c25e38d7e7a93cc53c.dir
+      size: 163846
+      nfiles: 49
+  generate_conversations@gpt-4o-2024-05-13-user_retention:
+    cmd: python generate_conversations.py --model=gpt-4o-2024-05-13 --params_file=params.yaml
+      --dataset_dir=data/prompts/user_retention --output_dir=data/conversations/gpt-4o-2024-05-13/user_retention
+      --limit=0
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/prompts/user_retention
+      hash: md5
+      md5: d56038d9cfc409340f4e7968a0617f16.dir
+      size: 18301
+      nfiles: 49
+    - path: generate_conversations.py
+      hash: md5
+      md5: cf203657f40e8b44c33bd87e1a190a89
+      size: 4767
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/conversations/gpt-4o-2024-05-13/user_retention
+      hash: md5
+      md5: 75c45b78b87e1eefacc2c8bca096a37f.dir
+      size: 82048
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-anthropomorphization-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      --output_dir=data/evals/claude-3-sonnet-20240229/anthropomorphization/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      hash: md5
+      md5: 0e11ec4836501c6b13522fd5d1c74333.dir
+      size: 45850
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: 
+        data/evals/claude-3-sonnet-20240229/anthropomorphization/claude-3-sonnet-20240229
+      hash: md5
+      md5: e5bdbe2cd74da5b47f259a37ebb7a451.dir
+      size: 70997
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-brand_awareness-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/brand_awareness 
+      --output_dir=data/evals/claude-3-sonnet-20240229/brand_awareness/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/brand_awareness
+      hash: md5
+      md5: 623a8fd1977e722394bfbf3eb7a22850.dir
+      size: 68814
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/brand_awareness/claude-3-sonnet-20240229
+      hash: md5
+      md5: 2d7e48c83cb8db1cbfaed4c4be574168.dir
+      size: 96294
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-cost_optimisation_answer_length-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      --output_dir=data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      hash: md5
+      md5: b12265963303b62f9a59c96fab7627a4.dir
+      size: 99861
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: 
+        data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length/claude-3-sonnet-20240229
+      hash: md5
+      md5: fed450daf8f0c9eee31ceef86d8913d0.dir
+      size: 121904
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-data_collection-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/data_collection 
+      --output_dir=data/evals/claude-3-sonnet-20240229/data_collection/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/data_collection
+      hash: md5
+      md5: 415e5835af83d06a20cf32a969b4a950.dir
+      size: 89417
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/data_collection/claude-3-sonnet-20240229
+      hash: md5
+      md5: 81a36da976a648163c405128e7a59403.dir
+      size: 116588
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-echo_chambers-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/echo_chambers 
+      --output_dir=data/evals/claude-3-sonnet-20240229/echo_chambers/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/echo_chambers
+      hash: md5
+      md5: df2f68209994dc7ca0b7efdd1e0d9fe2.dir
+      size: 84680
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/echo_chambers/claude-3-sonnet-20240229
+      hash: md5
+      md5: d46789a215a8a5129176b85c2fa279b5.dir
+      size: 114523
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-misalignment-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/misalignment 
+      --output_dir=data/evals/claude-3-sonnet-20240229/misalignment/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/misalignment
+      hash: md5
+      md5: 0951f138794c3ff868b46b38dac25dc6.dir
+      size: 80205
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/misalignment/claude-3-sonnet-20240229
+      hash: md5
+      md5: 7009b48260b2776a4d56dfd7bbe4ab1c.dir
+      size: 106276
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-privacy_zuckering-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      --output_dir=data/evals/claude-3-sonnet-20240229/privacy_zuckering/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      hash: md5
+      md5: 1a9d18032defd727ccbd256b298dd321.dir
+      size: 96526
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/privacy_zuckering/claude-3-sonnet-20240229
+      hash: md5
+      md5: 776c3e191e80e382179ad4c15688da32.dir
+      size: 126255
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-user_retention-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/user_retention 
+      --output_dir=data/evals/claude-3-sonnet-20240229/user_retention/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/user_retention
+      hash: md5
+      md5: 890da17ee9652b2c6d5eba391b2b8494.dir
+      size: 67083
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/user_retention/claude-3-sonnet-20240229
+      hash: md5
+      md5: e7629eb4a5fd50cb086de9162b32a2b0.dir
+      size: 94341
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-anthropomorphization-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/anthropomorphization/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      hash: md5
+      md5: 20f0cc66f9f310ee0af36db4e78978f3.dir
+      size: 107550
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/anthropomorphization/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: c273ddc2c195e776dafe5a5d04ec7f12.dir
+      size: 132792
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-brand_awareness-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/brand_awareness 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/brand_awareness/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/brand_awareness
+      hash: md5
+      md5: c54dba95728ddb39f60d9fe0f1521ca6.dir
+      size: 154682
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/brand_awareness/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 76c81a6d93431977d379402b04d5a07e.dir
+      size: 181881
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-cost_optimisation_answer_length-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      hash: md5
+      md5: 15d3dfd5fb1d5fb332516dd141735056.dir
+      size: 139958
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: 
+        data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 82432ee77091841157cbaee1ce5a471c.dir
+      size: 163938
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-data_collection-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/data_collection 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/data_collection/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/data_collection
+      hash: md5
+      md5: 8e3da4cc37f38b49f0a24eec3bd27415.dir
+      size: 163112
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/data_collection/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 84a407e3e635ffa6063b861a0c1c5fdb.dir
+      size: 189584
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-echo_chambers-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/echo_chambers 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/echo_chambers/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/echo_chambers
+      hash: md5
+      md5: 8f22a455bff9ca1ddf601eac26f0fe03.dir
+      size: 150923
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/echo_chambers/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 37a8a651414ae4b4d6fa0380ea20705f.dir
+      size: 181584
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-misalignment-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/misalignment 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/misalignment/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/misalignment
+      hash: md5
+      md5: 0ebc644d2a61fdd72526a6b211bc934c.dir
+      size: 166022
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/misalignment/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 553149dc6f2f4cb19a8533326de1d69d.dir
+      size: 193917
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-privacy_zuckering-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering
+      hash: md5
+      md5: 876ab3c04d8ee53b086675a79044618b.dir
+      size: 169487
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: aa627c462d424c6f24526d0df49fdc79.dir
+      size: 197113
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-user_retention-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/user_retention 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/user_retention/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/user_retention
+      hash: md5
+      md5: 02d85e54db4dd0879dd2d87956e41003.dir
+      size: 111237
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/user_retention/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 115f5fe232dc4dd06b39f9d4b144adc2.dir
+      size: 137446
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-anthropomorphization-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/anthropomorphization
+      --output_dir=data/evals/gpt-4o-2024-05-13/anthropomorphization/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/anthropomorphization
+      hash: md5
+      md5: 6d2cfba7ed6b2c15c3fc7d3df53cedc4.dir
+      size: 93463
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/anthropomorphization/gpt-4o-2024-05-13
+      hash: md5
+      md5: 7ef5596084e30a953a0855d0528b52ca.dir
+      size: 117952
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-brand_awareness-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/brand_awareness
+      --output_dir=data/evals/gpt-4o-2024-05-13/brand_awareness/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/brand_awareness
+      hash: md5
+      md5: b7bd2c45d19ba33c48f62e54a83a710a.dir
+      size: 135983
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/brand_awareness/gpt-4o-2024-05-13
+      hash: md5
+      md5: 6848ff806edbc0e9011a676e0709c577.dir
+      size: 164226
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-cost_optimisation_answer_length-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml 
+      --dataset_dir=data/conversations/gpt-4o-2024-05-13/cost_optimisation_answer_length
+      --output_dir=data/evals/gpt-4o-2024-05-13/cost_optimisation_answer_length/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/cost_optimisation_answer_length
+      hash: md5
+      md5: 1303940c23a6809887d2009f96ef697b.dir
+      size: 149433
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/cost_optimisation_answer_length/gpt-4o-2024-05-13
+      hash: md5
+      md5: bc013cdc4d8a3d6840458262472a0cff.dir
+      size: 169592
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-data_collection-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/data_collection
+      --output_dir=data/evals/gpt-4o-2024-05-13/data_collection/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/data_collection
+      hash: md5
+      md5: b15833fbdfab64627da82ddcd620bafd.dir
+      size: 168257
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/data_collection/gpt-4o-2024-05-13
+      hash: md5
+      md5: bbd9cc9067a7666656a491803a2cec0e.dir
+      size: 195932
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-echo_chambers-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/echo_chambers
+      --output_dir=data/evals/gpt-4o-2024-05-13/echo_chambers/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/echo_chambers
+      hash: md5
+      md5: a0b5a01c2bd5ef1d97eeb89c1fa01ffa.dir
+      size: 139905
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/echo_chambers/gpt-4o-2024-05-13
+      hash: md5
+      md5: 13989206a6512c7eafc5f1356eaea62a.dir
+      size: 167834
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-misalignment-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/misalignment
+      --output_dir=data/evals/gpt-4o-2024-05-13/misalignment/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/misalignment
+      hash: md5
+      md5: 841504578b344fdeb123bd2e9f976336.dir
+      size: 178475
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/misalignment/gpt-4o-2024-05-13
+      hash: md5
+      md5: 307243e9eb7ce1add5a4774771a61df8.dir
+      size: 204313
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-privacy_zuckering-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/privacy_zuckering
+      --output_dir=data/evals/gpt-4o-2024-05-13/privacy_zuckering/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/privacy_zuckering
+      hash: md5
+      md5: 62317b117679b4c25e38d7e7a93cc53c.dir
+      size: 163846
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/privacy_zuckering/gpt-4o-2024-05-13
+      hash: md5
+      md5: 61043384f1a80d04e5db0710947b6b37.dir
+      size: 193459
+      nfiles: 49
+  run_eval@gpt-4o-2024-05-13-user_retention-gpt-4o-2024-05-13:
+    cmd: python run_eval.py --model=gpt-4o-2024-05-13 --params_file=params.yaml --dataset_dir=data/conversations/gpt-4o-2024-05-13/user_retention
+      --output_dir=data/evals/gpt-4o-2024-05-13/user_retention/gpt-4o-2024-05-13
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4o-2024-05-13/user_retention
+      hash: md5
+      md5: 75c45b78b87e1eefacc2c8bca096a37f.dir
+      size: 82048
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: 654573f1d0d293e98a8b579643191a2f
+      size: 316802
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4o-2024-05-13:
+          type: openai
+    outs:
+    - path: data/evals/gpt-4o-2024-05-13/user_retention/gpt-4o-2024-05-13
+      hash: md5
+      md5: f6a4e41fbda471006d9fcfc44e09da88.dir
+      size: 107030
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-anthropomorphization-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      --output_dir=data/evals/claude-3-sonnet-20240229/anthropomorphization/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/anthropomorphization
+      hash: md5
+      md5: 0e11ec4836501c6b13522fd5d1c74333.dir
+      size: 45850
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/anthropomorphization/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 0cc8bc838b6dd53ddc1994f0ea72d373.dir
+      size: 66997
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-brand_awareness-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/brand_awareness 
+      --output_dir=data/evals/claude-3-sonnet-20240229/brand_awareness/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/brand_awareness
+      hash: md5
+      md5: 623a8fd1977e722394bfbf3eb7a22850.dir
+      size: 68814
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/brand_awareness/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 563a02b1b2a9d980f6adf7574b6056f9.dir
+      size: 93186
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-cost_optimisation_answer_length-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      --output_dir=data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      hash: md5
+      md5: b12265963303b62f9a59c96fab7627a4.dir
+      size: 99861
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: 
+        data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: fe050eeba63829da61fb340d9f61b626.dir
+      size: 121353
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-data_collection-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/data_collection 
+      --output_dir=data/evals/claude-3-sonnet-20240229/data_collection/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/data_collection
+      hash: md5
+      md5: 415e5835af83d06a20cf32a969b4a950.dir
+      size: 89417
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/data_collection/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: a19878ea3add94281245b61b0abfbae5.dir
+      size: 113588
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-echo_chambers-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/echo_chambers 
+      --output_dir=data/evals/claude-3-sonnet-20240229/echo_chambers/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/echo_chambers
+      hash: md5
+      md5: df2f68209994dc7ca0b7efdd1e0d9fe2.dir
+      size: 84680
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/echo_chambers/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 0f36b1f971cfdd0d2c0506dc55523c55.dir
+      size: 110003
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-misalignment-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/misalignment 
+      --output_dir=data/evals/claude-3-sonnet-20240229/misalignment/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/misalignment
+      hash: md5
+      md5: 0951f138794c3ff868b46b38dac25dc6.dir
+      size: 80205
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/misalignment/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 6d880d38dad020eceaba11e70b1a3b83.dir
+      size: 103958
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-privacy_zuckering-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      --output_dir=data/evals/claude-3-sonnet-20240229/privacy_zuckering/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/privacy_zuckering
+      hash: md5
+      md5: 1a9d18032defd727ccbd256b298dd321.dir
+      size: 96526
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/privacy_zuckering/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: efb990ee5f0829a9cf6ccfeab2c058b3.dir
+      size: 121922
+      nfiles: 49
+  run_eval@claude-3-sonnet-20240229-user_retention-gpt-4-turbo-2024-04-09:
+    cmd: python run_eval.py --model=gpt-4-turbo-2024-04-09 --params_file=params.yaml
+      --dataset_dir=data/conversations/claude-3-sonnet-20240229/user_retention 
+      --output_dir=data/evals/claude-3-sonnet-20240229/user_retention/gpt-4-turbo-2024-04-09
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/claude-3-sonnet-20240229/user_retention
+      hash: md5
+      md5: 890da17ee9652b2c6d5eba391b2b8494.dir
+      size: 67083
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.gpt-4-turbo-2024-04-09:
+          type: openai
+    outs:
+    - path: data/evals/claude-3-sonnet-20240229/user_retention/gpt-4-turbo-2024-04-09
+      hash: md5
+      md5: 6f6628c0e293624b4d10b9b87eaf4c3f.dir
+      size: 91587
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-anthropomorphization-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/anthropomorphization/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/anthropomorphization
+      hash: md5
+      md5: 20f0cc66f9f310ee0af36db4e78978f3.dir
+      size: 107550
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/anthropomorphization/claude-3-sonnet-20240229
+      hash: md5
+      md5: 0a81e31c894fb0941c9612c78bd77487.dir
+      size: 138551
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-brand_awareness-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/brand_awareness 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/brand_awareness/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/brand_awareness
+      hash: md5
+      md5: c54dba95728ddb39f60d9fe0f1521ca6.dir
+      size: 154682
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/brand_awareness/claude-3-sonnet-20240229
+      hash: md5
+      md5: 988e6aab488df5bbca268a6ba2faaedc.dir
+      size: 185577
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-cost_optimisation_answer_length-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      hash: md5
+      md5: 15d3dfd5fb1d5fb332516dd141735056.dir
+      size: 139958
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: 
+        data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length/claude-3-sonnet-20240229
+      hash: md5
+      md5: 67f1e92ac058f22a8345ddda94bd6048.dir
+      size: 163295
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-data_collection-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/data_collection 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/data_collection/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/data_collection
+      hash: md5
+      md5: 8e3da4cc37f38b49f0a24eec3bd27415.dir
+      size: 163112
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/data_collection/claude-3-sonnet-20240229
+      hash: md5
+      md5: 16c4fd0dc42a123943a1d204d3376e6e.dir
+      size: 192117
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-echo_chambers-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/echo_chambers 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/echo_chambers/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/echo_chambers
+      hash: md5
+      md5: 8f22a455bff9ca1ddf601eac26f0fe03.dir
+      size: 150923
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/echo_chambers/claude-3-sonnet-20240229
+      hash: md5
+      md5: 1fb3c8cbc5202743408fba6b827eb68d.dir
+      size: 182485
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-misalignment-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/misalignment 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/misalignment/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/misalignment
+      hash: md5
+      md5: 0ebc644d2a61fdd72526a6b211bc934c.dir
+      size: 166022
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/misalignment/claude-3-sonnet-20240229
+      hash: md5
+      md5: f769e8c919594c30c37f70296394d8a5.dir
+      size: 195838
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-privacy_zuckering-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/privacy_zuckering
+      hash: md5
+      md5: 876ab3c04d8ee53b086675a79044618b.dir
+      size: 169487
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering/claude-3-sonnet-20240229
+      hash: md5
+      md5: 532120d6e65ee4c49d0ccf9d4993bbf3.dir
+      size: 201526
+      nfiles: 49
+  run_eval@gpt-4-turbo-2024-04-09-user_retention-claude-3-sonnet-20240229:
+    cmd: python run_eval.py --model=claude-3-sonnet-20240229 --params_file=params.yaml
+      --dataset_dir=data/conversations/gpt-4-turbo-2024-04-09/user_retention 
+      --output_dir=data/evals/gpt-4-turbo-2024-04-09/user_retention/claude-3-sonnet-20240229
+    deps:
+    - path: darkgpt
+      hash: md5
+      md5: 8b7cb218b8a9200e208fa8fb29ff15fd.dir
+      size: 10133
+      nfiles: 3
+    - path: data/conversations/gpt-4-turbo-2024-04-09/user_retention
+      hash: md5
+      md5: 02d85e54db4dd0879dd2d87956e41003.dir
+      size: 111237
+      nfiles: 49
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: run_eval.py
+      hash: md5
+      md5: 061b0acaf3b502cd038ffd06690f306c
+      size: 3807
+    params:
+      params.yaml:
+        models.claude-3-sonnet-20240229:
+          type: claude
+    outs:
+    - path: data/evals/gpt-4-turbo-2024-04-09/user_retention/claude-3-sonnet-20240229
+      hash: md5
+      md5: 49b84f897b99dbe74c94db014b18703a.dir
+      size: 139740
+      nfiles: 49
+  summarize@claude-3-sonnet-20240229-anthropomorphization:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:anthropomorphization
+      --evals_dir=data/evals/claude-3-sonnet-20240229/anthropomorphization --output_file=metrics/anthropomorphization/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/anthropomorphization
+      hash: md5
+      md5: acf8682f0fa3a9a881830ffc2f7d224f.dir
+      size: 137994
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/anthropomorphization/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 299bab0066e256c60290c9d98cc8e45a
+      size: 676
+  summarize@claude-3-sonnet-20240229-brand_awareness:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:brand_awareness
+      --evals_dir=data/evals/claude-3-sonnet-20240229/brand_awareness --output_file=metrics/brand_awareness/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/brand_awareness
+      hash: md5
+      md5: ab10e25771c7beeed9d8671f1ac3ea63.dir
+      size: 189480
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/brand_awareness/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 972cacc277af5114a4200631e86d473f
+      size: 676
+  summarize@claude-3-sonnet-20240229-cost_optimisation_answer_length:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:cost_optimisation_answer_length
+      --evals_dir=data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      --output_file=metrics/cost_optimisation_answer_length/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/cost_optimisation_answer_length
+      hash: md5
+      md5: 2988a08de72e0536ee345c45e08bbbf7.dir
+      size: 243257
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/cost_optimisation_answer_length/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 71c5ac440e81a477d4a46cf29988cce5
+      size: 676
+  summarize@claude-3-sonnet-20240229-data_collection:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:data_collection
+      --evals_dir=data/evals/claude-3-sonnet-20240229/data_collection --output_file=metrics/data_collection/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/data_collection
+      hash: md5
+      md5: a9c546113a9557bc2af471e66768d421.dir
+      size: 230176
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/data_collection/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 9fa47566bcd552fbaa4cfc923ef185ba
+      size: 676
+  summarize@claude-3-sonnet-20240229-echo_chambers:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:echo_chambers
+      --evals_dir=data/evals/claude-3-sonnet-20240229/echo_chambers --output_file=metrics/echo_chambers/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/echo_chambers
+      hash: md5
+      md5: d5f760c6419cc9a5fa207fc424712a26.dir
+      size: 224526
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/echo_chambers/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 9fa47566bcd552fbaa4cfc923ef185ba
+      size: 676
+  summarize@claude-3-sonnet-20240229-misalignment:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:misalignment
+      --evals_dir=data/evals/claude-3-sonnet-20240229/misalignment --output_file=metrics/misalignment/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/misalignment
+      hash: md5
+      md5: 85445b4110163a6eba16eec59c201389.dir
+      size: 210234
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/misalignment/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 515b976d54250b60a581edc2c5a7764e
+      size: 677
+  summarize@claude-3-sonnet-20240229-privacy_zuckering:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:privacy_zuckering
+      --evals_dir=data/evals/claude-3-sonnet-20240229/privacy_zuckering --output_file=metrics/privacy_zuckering/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/privacy_zuckering
+      hash: md5
+      md5: b780a03222b8fdde8bfeb6998106eafa.dir
+      size: 248177
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/privacy_zuckering/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: 04de99c136b4f3e9cae41453cadb5384
+      size: 676
+  summarize@claude-3-sonnet-20240229-user_retention:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:user_retention
+      --evals_dir=data/evals/claude-3-sonnet-20240229/user_retention --output_file=metrics/user_retention/claude-3-sonnet-20240229.yaml
+    deps:
+    - path: data/evals/claude-3-sonnet-20240229/user_retention
+      hash: md5
+      md5: 578984c4d2c5ac019a93138b3e5b9483.dir
+      size: 185928
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/user_retention/claude-3-sonnet-20240229.yaml
+      hash: md5
+      md5: ec9ef28a732500f2850413c6426780cb
+      size: 677
+  summarize@gpt-4-turbo-2024-04-09-anthropomorphization:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:anthropomorphization
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/anthropomorphization --output_file=metrics/anthropomorphization/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/anthropomorphization
+      hash: md5
+      md5: 8e18c72dbe9a09def35fa5572e755340.dir
+      size: 271343
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/anthropomorphization/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 051eef304853f173ffaec87d1f17afc7
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-brand_awareness:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:brand_awareness
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/brand_awareness --output_file=metrics/brand_awareness/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/brand_awareness
+      hash: md5
+      md5: c67acc549d83e8fe2fd5e16e0462b8fb.dir
+      size: 367458
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/brand_awareness/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 57edb4945ad7451330607b8262bd037c
+      size: 677
+  summarize@gpt-4-turbo-2024-04-09-cost_optimisation_answer_length:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:cost_optimisation_answer_length
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      --output_file=metrics/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/cost_optimisation_answer_length
+      hash: md5
+      md5: 41050930f607e0756008a1c2d673c225.dir
+      size: 327233
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/cost_optimisation_answer_length/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 1e963cc55b8db7c93626f2501067f72a
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-data_collection:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:data_collection
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/data_collection --output_file=metrics/data_collection/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/data_collection
+      hash: md5
+      md5: 1777d9d86e74029fbc9ac19ef3c7f241.dir
+      size: 381701
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/data_collection/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 9fa47566bcd552fbaa4cfc923ef185ba
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-echo_chambers:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:echo_chambers
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/echo_chambers --output_file=metrics/echo_chambers/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/echo_chambers
+      hash: md5
+      md5: 07b88cf858b4488aef689997ecf24484.dir
+      size: 364069
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/echo_chambers/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 9fa47566bcd552fbaa4cfc923ef185ba
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-misalignment:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:misalignment
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/misalignment --output_file=metrics/misalignment/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/misalignment
+      hash: md5
+      md5: f1da8344a21aba93e1942cde5139da89.dir
+      size: 389755
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/misalignment/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: d0e304f3628899188a3b790a93e9fb42
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-privacy_zuckering:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:privacy_zuckering
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering --output_file=metrics/privacy_zuckering/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/privacy_zuckering
+      hash: md5
+      md5: a54a8f8d42af3c7f0bc59d554cbad484.dir
+      size: 398639
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/privacy_zuckering/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: 9fa47566bcd552fbaa4cfc923ef185ba
+      size: 676
+  summarize@gpt-4-turbo-2024-04-09-user_retention:
+    cmd: python summarize.py --params_file=params.yaml --manifest=data/prompts/manifest.yaml:user_retention
+      --evals_dir=data/evals/gpt-4-turbo-2024-04-09/user_retention --output_file=metrics/user_retention/gpt-4-turbo-2024-04-09.yaml
+    deps:
+    - path: data/evals/gpt-4-turbo-2024-04-09/user_retention
+      hash: md5
+      md5: ec8174a5b2b7a756a70969b996231789.dir
+      size: 277186
+      nfiles: 98
+    - path: data/prompts/manifest.yaml
+      hash: md5
+      md5: bbd9a186554060143b5ff3ad186b08ec
+      size: 26417
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    - path: summarize.py
+      hash: md5
+      md5: 8df3de59c437ff988c456171d76dab97
+      size: 1678
+    params:
+      params.yaml:
+        overseers:
+        - claude-3-sonnet-20240229
+        - gpt-4-turbo-2024-04-09
+    outs:
+    - path: metrics/user_retention/gpt-4-turbo-2024-04-09.yaml
+      hash: md5
+      md5: b17c6bc40ceb12c8d128ecbe6bd6c381
+      size: 678
+  plot_issues:
+    cmd: python plot_issues.py --metrics_dir=metrics --output_file=plots/issues_by_model_and_overseer.png
+    deps:
+    - path: metrics
+      hash: md5
+      md5: 8996e247a0e629fce562b98040a5503c.dir
+      size: 10835
+      nfiles: 17
+    - path: plot_issues.py
+      hash: md5
+      md5: 90eac2cbbf2dcf7ba988e4256bc531a5
+      size: 2332
+    - path: poetry.lock
+      hash: md5
+      md5: bb8f0cd01f1b4d246100863180475ffa
+      size: 370146
+    outs:
+    - path: plots/issues_by_model_and_overseer.png
+      hash: md5
+      md5: 95fe2d4602063457e4f4490732769d01
+      size: 62702

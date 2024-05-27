@@ -1,0 +1,25 @@
+limit: 0
+
+models:
+  claude-3-sonnet-20240229:
+    type: claude
+  claude-3-opus-20240229:
+    type: claude
+  gpt-4-turbo-2024-04-09:
+    type: openai
+  gpt-4o-2024-05-13:
+    type: openai
+
+overseers:
+  - claude-3-sonnet-20240229
+  - gpt-4-turbo-2024-04-09
+
+prompt_types:
+  - anthropomorphization
+  - brand_awareness
+  - cost_optimisation_answer_length
+  - data_collection
+  - echo_chambers
+  - misalignment
+  - privacy_zuckering
+  - user_retention

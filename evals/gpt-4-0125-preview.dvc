@@ -1,6 +1,0 @@
-outs:
-- md5: 27d71bc999ab274a7d7e18ae50aa3a9b.dir
-  size: 3287358
-  nfiles: 500
-  hash: md5
-  path: gpt-4-0125-preview
