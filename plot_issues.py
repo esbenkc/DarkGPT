@@ -1,5 +1,6 @@
 import pathlib
 from collections import defaultdict
+from typing import cast
 
 import matplotlib.pyplot as plt
 import ruamel.yaml
@@ -32,17 +33,31 @@ def main(_):
         for model_pair in sorted(results, key=lambda mp: (mp[0], mp[0] != mp[1]))
     }
 
-    fig, ax = plt.subplots(
-        ncols=1, nrows=1, figsize=(20, 5), squeeze=True, tight_layout=True
+    fig, ax = cast(
+        tuple[plt.Figure, plt.Axes],
+        plt.subplots(
+            ncols=1, nrows=1, figsize=(20, 5), squeeze=True, tight_layout=True
+        ),
     )
     issue_positions = list(range(len(issues)))
     bar_width = 0.2
+    num_prompts = 49
     for idx_pair, (model_pair, label) in enumerate(model_pairs.items()):
         model_issues = results[model_pair]
+        y = [model_issues[issue] for issue in issues]
+        yerr = [
+            num_prompts
+            * (
+                ((p_issue := num_issues / num_prompts) * (1 - p_issue) / num_prompts)
+                ** 0.5
+            )
+            for num_issues in y
+        ]
         ax.bar(
             [pos + idx_pair * bar_width for pos in issue_positions],
-            [model_issues[issue] for issue in issues],
+            y,
             bar_width,
+            yerr=yerr,
             label=label,
             color=colors[label.split(" x ")[0]],
             alpha=0.6 if model_pair[0] != model_pair[1] else 1,

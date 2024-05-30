@@ -2912,8 +2912,8 @@ stages:
       nfiles: 17
     - path: plot_issues.py
       hash: md5
-      md5: 90eac2cbbf2dcf7ba988e4256bc531a5
-      size: 2332
+      md5: 2dc8977ce7bb917b846d843c6aa7f6bd
+      size: 2702
     - path: poetry.lock
       hash: md5
       md5: bb8f0cd01f1b4d246100863180475ffa
@@ -2921,5 +2921,5 @@ stages:
     outs:
     - path: plots/issues_by_model_and_overseer.png
       hash: md5
-      md5: 95fe2d4602063457e4f4490732769d01
-      size: 62702
+      md5: 5519040683f1c9f0557d167286dcb6b8
+      size: 64246
