@@ -3,9 +3,7 @@ from abc import ABC, abstractmethod
 from types import MappingProxyType
 from typing import Any, NamedTuple
 
-import anthropic
-import google.generativeai as genai
-from openai import OpenAI
+import jinja2
 
 
 class Role(enum.Enum):
@@ -59,7 +57,9 @@ class BaseModel(ABC):
 
 class OpenAIGpt(BaseModel):
     def __init__(self, model_name: str = "gpt-4-turbo-preview"):
-        self._client = OpenAI()
+        import openai
+
+        self._client = openai.OpenAI()
         self._model_name = model_name
 
     def _generate(self, messages: list[dict[str, str]]) -> str:
@@ -92,6 +92,8 @@ class OpenAIGpt(BaseModel):
 
 class Gemini(BaseModel):
     def __init__(self, model_name: str = "gemini-pro"):
+        import google.generativeai as genai
+
         self._model = genai.GenerativeModel(model_name)
         self._model_name = model_name
 
@@ -116,6 +118,8 @@ class Claude(BaseModel):
         model_name: str = "claude-3-sonnet-20240229",
         max_tokens: int = 1024,
     ):
+        import anthropic
+
         self._client = anthropic.Anthropic()
         self._model_name = model_name
         self._max_tokens = max_tokens
@@ -142,12 +146,51 @@ class Claude(BaseModel):
         return f"Claude ({self._model_name})"
 
 
+class Replicate(BaseModel):
+    """For messages with chat history to work, need to provide a Jinja2 chat template
+    compatible with the chosen model. Messages will be passed to the template as
+    the `messages` variable, with each message in the list being a dictionary
+    with the keys `role` (either "user" or "assistant") and `content`.
+    """
+
+    def __init__(
+        self, model_name: str, chat_template: str | None = None, **params: Any
+    ):
+        import replicate
+
+        self._client = replicate.Client()
+        self._chat_template = (
+            jinja2.Environment().from_string(chat_template) if chat_template else None
+        )
+        self._model_name = model_name
+        self._params = params
+
+    def generate(self, message: str, preprompt: str | None = None) -> str:
+        prompt = {"prompt": message}
+        if preprompt:
+            prompt["system"] = preprompt
+
+        return self._client.run(self._model_name, input=prompt, **self._params)
+
+    def generate_with_context(self, context: Context, message: str) -> str:
+        if len(context.messages) > 0 and self._chat_template is None:
+            raise ValueError(
+                "Chat template must be provided to use Replicate models with message history"
+            )
+
+        messages = context.to_list()
+        messages.append({"role": Role.human.value, "content": message})
+        message = self._chat_template.render(messages=messages)
+        return self.generate(message)
+
+
 class ModelRegistry:
     _REGISTRY = MappingProxyType(
         {
             "claude": Claude,
             "gemini": Gemini,
             "openai": OpenAIGpt,
+            "replicate": Replicate,
         }
     )
 

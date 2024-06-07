@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Esben Kran <esben@kran.ai>"]
 readme = "README.md"
+include = ["darkgpt/prompts/**/*.py"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -11,9 +12,11 @@ python = "^3.12"
 absl-py = "*"
 anthropic = "*"
 google-generativeai = "*"
+jinja2 = "*"
 matplotlib = "*"
 openai = "*"
 python-dotenv = "*"
+replicate = "*"
 ruamel-yaml = "*"
 
 [tool.poetry.group.dev.dependencies]
