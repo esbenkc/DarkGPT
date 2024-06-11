@@ -1,67 +1,68 @@
 stages:
   make_prompts:
     cmd: >-
-      python make_prompts.py
-      --dataset=data/raw.csv
-      --output_dir=data/prompts
+      python scripts/make_prompts.py
+      --prompts-file=data/raw.csv
+      --output-dir=data/prompts
     deps:
-      - darkgpt
+      - darkgpt/models/base.py
       - data/raw.csv
-      - make_prompts.py
       - poetry.lock
+      - scripts/make_prompts.py
     outs:
       - data/prompts
 
   generate_conversations:
     matrix:
-      assistant: ${models}
+      assistant: ${assistants}
       prompt_type: ${prompt_types}
     cmd: >-
-      python generate_conversations.py
+      python scripts/generate_conversations.py
       --model=${item.assistant}
-      --params_file=params.yaml
-      --dataset_dir=data/prompts/${item.prompt_type}
-      --output_dir=data/conversations/${item.assistant}/${item.prompt_type}
+      --params-file=params.yaml
+      --prompts-dir=data/prompts/${item.prompt_type}
+      --output-dir=data/conversations/${item.assistant}/${item.prompt_type}
       --limit=${limit}
     deps:
-      - darkgpt
+      - darkgpt/models
       - data/prompts/${item.prompt_type}
-      - generate_conversations.py
       - poetry.lock
+      - scripts/generate_conversations.py
     params:
-      - models.${item.assistant}
+      - models.${item.assistant}.build
     outs:
       - data/conversations/${item.assistant}/${item.prompt_type}
 
   run_eval:
     matrix:
-      assistant: &assistants
-        - claude-3-sonnet-20240229
-        - gpt-4-turbo-2024-04-09
+      assistant: ${assistants}
       prompt_type: ${prompt_types}
-      overseer: ${overseers}
+      overseer: ${eval.overseers}
     cmd: >-
-      python run_eval.py
-      --model=${item.overseer}
-      --params_file=params.yaml
-      --dataset_dir=data/conversations/${item.assistant}/${item.prompt_type}
-      --output_dir=data/evals/${item.assistant}/${item.prompt_type}/${item.overseer}
+      python scripts/run_eval.py
+      --overseer=${item.overseer}
+      --assistant=${item.assistant}
+      --conversations-dir=data/conversations/${item.assistant}/${item.prompt_type}
+      --output-dir=data/evals/${item.assistant}/${item.prompt_type}/${item.overseer}
+      --params-file=params.yaml
     deps:
       - darkgpt
       - data/conversations/${item.assistant}/${item.prompt_type}
       - poetry.lock
-      - run_eval.py
+      - scripts/run_eval.py
     params:
-      - models.${item.overseer}
+      - eval.issues
+      - models.${item.assistant}.prompt_info
+      - models.${item.overseer}.build
     outs:
       - data/evals/${item.assistant}/${item.prompt_type}/${item.overseer}
 
   summarize:
     matrix:
-      assistant: *assistants
+      assistant: ${assistants}
       prompt_type: ${prompt_types}
     cmd: >-
-      python summarize.py
+      python scripts/summarize.py
       --params_file=params.yaml
       --manifest=data/prompts/manifest.yaml:${item.prompt_type}
       --evals_dir=data/evals/${item.assistant}/${item.prompt_type}
@@ -70,21 +71,41 @@ stages:
       - data/evals/${item.assistant}/${item.prompt_type}
       - data/prompts/manifest.yaml
       - poetry.lock
-      - summarize.py
+      - scripts/summarize.py
     params:
-      - overseers
+      - eval.overseers
     metrics:
       - metrics/${item.prompt_type}/${item.assistant}.yaml
 
   plot_issues:
     cmd: >-
-      python plot_issues.py
+      python scripts/plot_issues.py
       --metrics_dir=metrics
       --output_file=plots/issues_by_model_and_overseer.png
     deps:
       - metrics
-      - plot_issues.py
       - poetry.lock
+      - scripts/plot_issues.py
     outs:
       - plots/issues_by_model_and_overseer.png:
           cache: False
+
+  sample_for_human_annotation:
+    cmd: >-
+      python scripts/sample_for_human_annotation.py
+      --conversations-dir data/conversations
+      --prompt-manifest-file data/prompts/manifest.yaml
+      --template-file data/human/lsq.jinja
+      --output-dir data/human/sampled
+      --params-file params.yaml
+    deps:
+      - data/conversations
+      - data/human/lsq.jinja
+      - data/prompts/manifest.yaml
+      - poetry.lock
+      - scripts/sample_for_human_annotation.py
+    params:
+      - assistants
+      - sample
+    outs:
+      - data/human/sampled

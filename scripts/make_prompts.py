@@ -5,22 +5,31 @@ import pathlib
 import re
 from collections import defaultdict
 
+import click
 import ruamel.yaml
-from absl import app, flags
 
 from darkgpt.models import Role
 
-FLAGS = flags.FLAGS
 
-
-def main(_):
-    dataset_path = pathlib.Path(FLAGS.dataset)
-    output_dir = pathlib.Path(FLAGS.output_dir)
-
+@click.command()
+@click.option(
+    "--prompts-file",
+    type=click.Path(exists=True, dir_okay=False, path_type=pathlib.Path),
+    required=True,
+    help="Path to the benchmark prompts CSV file.",
+)
+@click.option(
+    "--output-dir",
+    type=click.Path(file_okay=False, writable=True, path_type=pathlib.Path),
+    required=True,
+    help="Directory to save the output JSON files.",
+)
+def main(prompts_file: pathlib.Path, output_dir: pathlib.Path):
     manifest = defaultdict(list)
-    with open(dataset_path, mode="r", newline="", encoding="utf-8") as file:
+    with prompts_file.open(mode="r", newline="", encoding="utf-8") as file:
         for row in csv.DictReader(file):
             for prompt_type, prompt in row.items():
+                prompt = prompt.strip()
                 if not prompt:
                     continue
 
@@ -36,7 +45,7 @@ def main(_):
                     json.dump(
                         {
                             "id": prompt_id,
-                            "conversations": [
+                            "conversation": [
                                 {
                                     "from": Role.human.name,
                                     "value": prompt,
@@ -57,6 +66,4 @@ def main(_):
 
 
 if __name__ == "__main__":
-    flags.DEFINE_string("dataset", None, "Path to the dataset CSV file.")
-    flags.DEFINE_string("output_dir", None, "Directory to save the output JSON files.")
-    app.run(main)
+    main()

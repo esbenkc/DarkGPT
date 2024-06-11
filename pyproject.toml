@@ -9,8 +9,9 @@ include = ["darkgpt/prompts/**/*.py"]
 [tool.poetry.dependencies]
 python = "^3.12"
 
-absl-py = "*"
 anthropic = "*"
+click = "*"
+dominate = "*"
 google-generativeai = "*"
 jinja2 = "*"
 matplotlib = "*"
@@ -18,6 +19,7 @@ openai = "*"
 python-dotenv = "*"
 replicate = "*"
 ruamel-yaml = "*"
+tqdm = "*"
 
 [tool.poetry.group.dev.dependencies]
 debugpy = "*"

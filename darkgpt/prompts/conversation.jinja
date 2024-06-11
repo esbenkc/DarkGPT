@@ -1,0 +1,5 @@
+=== CONVERSATION START ===
+{% for message in conversation %}
+--- {{ message.from }} ---
+{{ message.value }}{% endfor %}
+=== CONVERSATION END ===

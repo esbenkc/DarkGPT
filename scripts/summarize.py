@@ -18,7 +18,7 @@ def main(_):
         prompt_ids: list[str] = yaml.load(file)[category]
 
     with open(FLAGS.params_file, "r") as file:
-        overseers: list[str] = yaml.load(file)["overseers"]
+        overseers: list[str] = yaml.load(file)["eval"]["overseers"]
 
     metrics = defaultdict(lambda: defaultdict(int))
     for prompt_id in prompt_ids:

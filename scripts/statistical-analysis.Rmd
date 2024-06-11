@@ -21,6 +21,8 @@ pacman::p_load(tidyverse, jsonlite, ggplot2, RColorBrewer, ggthemes, htmltools, 
 ```
 
 
+
+
 ```{r}
 # Set the path to the 'evals' directory
 evals_dir <- "evals/"
@@ -32,10 +34,10 @@ file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE
 read_json_to_df <- function(file_path) {
   # Extract the file name without extension as an ID
   file_id <- tools::file_path_sans_ext(basename(file_path))
-  
+
   # Read the JSON file
   data <- jsonlite::fromJSON(file_path, flatten = TRUE)
-  
+
   # Return as a tibble with the file ID
   tibble(id = file_id, user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, answer_length=data$ethical_issues$answer_length, conversation = data$conversations, dialogue = data$dialogue)
 }
@@ -106,10 +108,10 @@ file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE
 read_json_to_df <- function(file_path) {
   # Extract the file name without extension as an ID
   file_id <- tools::file_path_sans_ext(basename(file_path))
-  
+
   # Read the JSON file
   data <- jsonlite::fromJSON(file_path, flatten = TRUE)
-  
+
   # Return as a tibble with the file ID
   tibble(id = file_id,  model="GPT-3.5", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
 }
@@ -137,10 +139,10 @@ file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE
 read_json_to_df <- function(file_path) {
   # Extract the file name without extension as an ID
   file_id <- tools::file_path_sans_ext(basename(file_path))
-  
+
   # Read the JSON file
   data <- jsonlite::fromJSON(file_path, flatten = TRUE)
-  
+
   # Return as a tibble with the file ID
   tibble(id = file_id,  model="GPT-4", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
 }
@@ -168,10 +170,10 @@ file_paths <- list.files(path = evals_dir, pattern = "*.json", full.names = TRUE
 read_json_to_df <- function(file_path) {
   # Extract the file name without extension as an ID
   file_id <- tools::file_path_sans_ext(basename(file_path))
-  
+
   # Read the JSON file
   data <- jsonlite::fromJSON(file_path, flatten = TRUE)
-  
+
   # Return as a tibble with the file ID
   tibble(id = file_id,  model="ChatGPT", user_retention = data$ethical_issues$user_retention, privacy_zuckering = data$ethical_issues$privacy_zuckering, brand_awareness = data$ethical_issues$brand_awareness, echo_chambers = data$ethical_issues$echo_chambers, cost_optimization = data$ethical_issues$cost_optimization, data_collection = data$ethical_issues$data_collection, `_anthropomorphization` = data$ethical_issues$anthropomorphization, `_misalignment` = data$ethical_issues$misalignment, answer_length=data$ethical_issues$answer_length, conversation = data$ethical_issues$conversations, dialogue = data$dialogue)
 }
@@ -188,13 +190,13 @@ print(org_filtered_df)
 ```
 
 ```{r fig.width=7, fig.height=3}
-full_filtered <- org_filtered_df %>% 
-  rbind(gpt35_filtered_df) %>% 
+full_filtered <- org_filtered_df %>%
+  rbind(gpt35_filtered_df) %>%
   rbind(gpt4_filtered_df)
 
 # Count the number of 1s in each of the ethical_issues columns
 counts <- full_filtered %>%
-  group_by(model) %>% 
+  group_by(model) %>%
   summarise(across(contains("_"), ~ sum(.x == 1, na.rm = TRUE)))
 
 # Transform the counts into a long format for ggplot
@@ -243,25 +245,25 @@ dark_occurrences_df <- dark_occurrences_df %>%
 render_conversations <- function(df, output_dir = "public") {
   # Create the output directory if it doesn't exist
   dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
-  
+
   # Initialize a vector to store the links for the index page
   links <- list()
-  
+
   css_path="styles.css"
-  
+
   # Process each row of the dataframe
-  df %>% 
-    group_by(id) %>% 
+  df %>%
+    group_by(id) %>%
     group_map(~{
       row <- .x
       # Extract data from the row
       id <- row$id
       dark_occurrences <- row$dark_occurrences
       conversation <- row$dialogue
-      
+
       # Split the conversation into human and GPT parts
       parts <- unlist(str_split(conversation, "\\\\n"))
-      
+
       content <- tags$html(
         tags$head(
           tags$link(rel = "stylesheet", type = "text/css", href = css_path)
@@ -291,19 +293,19 @@ render_conversations <- function(df, output_dir = "public") {
           ))
         }
       }
-      
+
       # Create the file name
       file_name <- file.path(output_dir, paste0(id, '-', dark_occurrences, ".html"))
-      
+
       # Save the HTML content to a file
       htmltools::save_html(content, file = file_name)
     }, .keep = TRUE) # .keep = TRUE to return a tibble
-  
+
   for(i in 1:nrow(df)) {
     row <- df[i,]
     id = row$id
     dark_occurrences = row$dark_occurrences
-    
+
     # Setting names
     file_name <- paste0(id, '-', dark_occurrences, ".html")
     link_text <- paste0(str_to_sentence(str_replace(dark_occurrences, "_", " ")))
@@ -333,5 +335,13 @@ render_conversations <- function(df, output_dir = "public") {
 # Assuming `conversations_df` is your dataframe with columns 'id', 'dark_occurrences', 'conversation'
 render_conversations(dark_occurrences_df, output_dir = "public")
 
+```
+
+
+
+## Human annotations
+
+```{r}
+df <- read_csv("data/human/two-experts.csv")
 ```
 
