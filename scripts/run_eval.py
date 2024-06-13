@@ -28,7 +28,11 @@ def _load_conversations(conversations_dir: pathlib.Path, limit: int | None = Non
 
 def _evaluate(overseer: Overseer, entry: dict, **prompt_variables):
     logger.info("Evaluating entry %s", entry["id"])
-    eval, conversation = overseer.evaluate(entry, **prompt_variables)
+    try:
+        eval, conversation = overseer.evaluate(entry, **prompt_variables)
+    except Exception as error:
+        logger.error("Error evaluating entry %s: %s", entry["id"], error)
+        raise error
     result = {
         **eval,
         **{

@@ -29,6 +29,20 @@ class BaseAgent(ABC):
     def _add_message_to_context(self, message: str):
         self.context.messages.append(Message(role=Role.human.value, content=message))
 
+    def _parse_json_response(self, response: str):
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            pass
+
+        response = re.search(r"{.+}", response, flags=re.DOTALL).group(0)
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            pass
+
+        return json.loads(re.sub(r"//.+", "", response, flags=re.MULTILINE))
+
     @abstractmethod
     def chat(self, message: Message) -> str:
         pass
@@ -81,13 +95,7 @@ class Overseer(LLMAgent):
         response = self.model.generate(prompt, preprompt=self.role)
 
         try:
-            eval = json.loads(response)
-        except json.JSONDecodeError:
-            try:
-                response = re.search(r"{.+}", response, re.DOTALL).group(0)
-                eval = json.loads(response)
-            except Exception:
-                logger.error("Failed to parse response: %s", response)
-                raise
-
-        return eval, conversation
+            return self._parse_json_response(response), conversation
+        except Exception:
+            logger.debug("Invalid response: %s", response)
+            raise

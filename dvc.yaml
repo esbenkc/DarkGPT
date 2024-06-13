@@ -63,10 +63,10 @@ stages:
       prompt_type: ${prompt_types}
     cmd: >-
       python scripts/summarize.py
-      --params_file=params.yaml
-      --manifest=data/prompts/manifest.yaml:${item.prompt_type}
-      --evals_dir=data/evals/${item.assistant}/${item.prompt_type}
-      --output_file=metrics/${item.prompt_type}/${item.assistant}.yaml
+      --params-file=params.yaml
+      --manifest=data/prompts/manifest.yaml ${item.prompt_type}
+      --evals-dir=data/evals/${item.assistant}/${item.prompt_type}
+      --output-file=metrics/${item.prompt_type}/${item.assistant}.yaml
     deps:
       - data/evals/${item.assistant}/${item.prompt_type}
       - data/prompts/manifest.yaml
