@@ -78,16 +78,27 @@ stages:
       - metrics/${item.prompt_type}/${item.assistant}.yaml
 
   plot_issues:
+    matrix:
+      group: ${plot.groups}
     cmd: >-
       python scripts/plot_issues.py
-      --metrics_dir=metrics
-      --output_file=plots/issues_by_model_and_overseer.png
+      --prompt-manifest-file=data/prompts/manifest.yaml
+      --params-file=params.yaml
+      metrics
+      ${item.group}
+      plots/issues_by_model_and_overseer/${item.group}.png
     deps:
+      - data/prompts/manifest.yaml
       - metrics
       - poetry.lock
       - scripts/plot_issues.py
+    params:
+      - eval.overseers
+      - plot.styles
+      - plot.fig
+      - plot.groups.${item.group}
     outs:
-      - plots/issues_by_model_and_overseer.png:
+      - plots/issues_by_model_and_overseer/${item.group}.png:
           cache: False
 
   sample_for_human_annotation:
